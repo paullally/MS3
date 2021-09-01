@@ -5,6 +5,7 @@ import string
 import uuid
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_pymongo import PyMongo
+from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from os import path
 import bcrypt
@@ -21,12 +22,14 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_tasks")
-def test():
-    test = list(mongo.db.users.find())
-    print(test)
-    return render_template('login-layout.html')
+@app.route("/home")
+def home():
+    return render_template('base.html')
 
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
 
 
 if __name__ == "__main__":
