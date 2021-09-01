@@ -1,9 +1,7 @@
 import os
-import json
-import random
-import string
-import uuid
-from flask import Flask, flash,render_template, session, request, redirect, url_for
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -22,9 +20,8 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/home")
-def home():
-    return render_template('base.html')
+def login():
+    return render_template('login.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -48,12 +45,12 @@ def register():
 
         if existing_email:
             flash("Email already in use")
-            return redirect(url_for("register"))
-        
+            return redirect(url_for("register"))   
+                
         if password != check:
             flash("passwords are not equal")
-            return redirect(url_for("register"))
-            
+            return redirect(url_for("register")) 
+
         mongo.db.users.insert_one({
             "username": request.form.get("username"),
             "email": request.form.get("email"),
@@ -62,6 +59,7 @@ def register():
         session["user"] = request.form.get("username")
         flash("Registration Successful!")
     return render_template("register.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

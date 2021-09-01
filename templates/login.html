@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content%}
+
+<section class="vh-100 " >
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Login</h2>
+                    <section>
+                        <!-- flash messages -->
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="row flashes">
+                                        <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </section>
+
+                <form method="POST" action="{{ url_for('register')}}">
+                  <div class="form-outline mb-4">
+                    <input type="text" id="username" name="username" class="form-control form-control-lg" minlength="5" maxlength="15" required/>
+                    <label class="form-label" for="username">Username</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control form-control-lg" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required/>
+                    <label class="form-label" for="password">Password</label>
+                  </div>
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                  </div>
+                  
+                  <p class="text-center text-muted mt-5 mb-0">New user? <a href="{{ url_for('register') }}" class="fw-bold text-body"><u>Sign up here</u></a></p>
+  
+                </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+     
+{% endblock %}
