@@ -8,30 +8,44 @@
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-                <form>
+                
+                    <section>
+                        <!-- flash messages -->
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="row flashes">
+                                        <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </section>
+
+                <form method="POST" action="{{ url_for('register')}}">
                   <div class="form-outline mb-4">
-                    <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                    <input type="text" id="username" name="username" class="form-control form-control-lg" minlength="5" maxlength="15" required/>
                     <label class="form-label" for="username">Username</label>
                   </div>
   
                   <div class="form-outline mb-4">
-                    <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                    <input type="email" id="email" name="email" class="form-control form-control-lg" required/>
                     <label class="form-label" for="email">Your Email</label>
                   </div>
   
                   <div class="form-outline mb-4">
-                    <input type="password" id="password" name="passswork" class="form-control form-control-lg" />
+                    <input type="password" id="password" name="passsword" class="form-control form-control-lg" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required/>
                     <label class="form-label" for="password">Password</label>
                   </div>
   
                   <div class="form-outline mb-4">
-                    <input type="password" id="password2" name="passowrd2" class="form-control form-control-lg" />
+                    <input type="password" id="password2" name="password2" class="form-control form-control-lg" minlength="5" maxlength="15" required/>
                     <label class="form-label" for="password2">Repeat your password</label>
                   </div>
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
                   </div>
-  
+                  
                   <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
   
                 </form>

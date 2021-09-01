@@ -3,7 +3,7 @@ import json
 import random
 import string
 import uuid
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, flash,render_template, session, request, redirect, url_for
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
@@ -29,8 +29,37 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+    if request.method == "POST":
+        password = request.form.get("password")
+        check = request.form.get("password2")
+        existing_user = mongo.db.users.find_one({
+            "username": request.form.get("username")
+            })
 
+        existing_email = mongo.db.users.find_one({
+            "email": request.form.get("email")
+            })
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        if existing_email:
+            flash("Email already in use")
+            return redirect(url_for("register"))
+        
+        if password is not check:
+            flash("passwords are not equal")
+            return redirect(url_for("register"))
+            
+        mongo.db.users.insert_one({
+            "username": request.form.get("username"),
+            "email": request.form.get("email"),
+            "password": request.form.get("password")
+        })
+        session["user"] = request.form.get("username")
+        flash("Registration Successful!")
+    return render_template("register.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
