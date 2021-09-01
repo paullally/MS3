@@ -29,8 +29,6 @@ def register():
     if request.method == "POST":
         password = request.form.get("password")
         check = request.form.get("password2")
-        print(password)
-        print(check)
         existing_user = mongo.db.users.find_one({
             "username": request.form.get("username")
             })
