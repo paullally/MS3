@@ -5,8 +5,8 @@ import string
 import uuid
 from flask import Flask, flash,render_template, session, request, redirect, url_for
 from flask_pymongo import PyMongo
-from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 from os import path
 import bcrypt
 if os.path.exists("env.py"):
@@ -32,6 +32,8 @@ def register():
     if request.method == "POST":
         password = request.form.get("password")
         check = request.form.get("password2")
+        print(password)
+        print(check)
         existing_user = mongo.db.users.find_one({
             "username": request.form.get("username")
             })
@@ -48,14 +50,14 @@ def register():
             flash("Email already in use")
             return redirect(url_for("register"))
         
-        if password is not check:
+        if password != check:
             flash("passwords are not equal")
             return redirect(url_for("register"))
             
         mongo.db.users.insert_one({
             "username": request.form.get("username"),
             "email": request.form.get("email"),
-            "password": request.form.get("password")
+            "password": generate_password_hash(request.form.get("password"))
         })
         session["user"] = request.form.get("username")
         flash("Registration Successful!")
