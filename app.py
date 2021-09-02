@@ -90,6 +90,18 @@ def profile(username):
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username)
 
+@app.route('/Upload/<username>', methods=['POST'])
+def upload(username):
+    profile_image = request.files['profile_image']
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    test = mongo.db.files.find_one({"id": request.form['id']})
+    if not test:
+        mongo.save_file(profile_image.filename,profile_image)
+        mongo.db.files.insert({'id': request.form['id'],'profile_image_name':profile_image.filename})
+        return "<h1>DonE!!!</h1>"
+    else:
+        return "<h1>error</h1>"
 
 
 
