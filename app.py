@@ -85,23 +85,28 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the session user's username from db
+    file = mongo.db.files.find({"id": session["user"]})
+    print(file)
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
+    return render_template("profile.html", username=username ,files=file)
 
 @app.route('/Upload/<username>', methods=['POST'])
 def upload(username):
     profile_image = request.files['profile_image']
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    test = mongo.db.files.find_one({"id": request.form['id']})
+    test = mongo.db.files.find_one({"id": session["user"]})
     if not test:
         mongo.save_file(profile_image.filename,profile_image)
-        mongo.db.files.insert({'id': request.form['id'],'profile_image_name':profile_image.filename})
+        mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
         return "<h1>DonE!!!</h1>"
     else:
         return "<h1>error</h1>"
+
+@app.route('/file/<filename>')
+def file(filename):
+    return mongo.send_file(filename)
 
 
 
