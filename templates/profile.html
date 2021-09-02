@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="card">
+  <h1> {{ username }}</h1>
+    <form  method="POST" action="#" enctype="multipart/form-data">
+        <input type="hidden" name="id" value=" {{ username }}">
+        <input type="file" class="d-inline" name="profile_image">
+        <input type="submit" name="submit" class="btn primary-button d-inline">
+    </form>
+</div>
+
+{% endblock %}
