@@ -80,6 +80,9 @@
   <!-- Container wrapper -->
 </nav>
 {% endfor %}
+{% for workout in workouts %}
+<h1>{{workout.Title}}</h1>
+{% endfor %}
 <button
   type="button"
   class="btn btn-primary"

@@ -119,7 +119,9 @@ def logout():
 def workouts(username):
     file = mongo.db.files.find({"id": session["user"]})
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
-    return render_template("workouts.html", username=username,files=file)
+    workout = list(mongo.db.Workouts.find({"user": session["user"]}))
+    print(workout)
+    return render_template("workouts.html", username=username,files=file, workouts=workout)
 
 
 @app.route("/Add-Workouts/<username>", methods=["GET", "POST"])
@@ -135,7 +137,7 @@ def addworkout(username):
                 'Routine': request.form['Routine'],
                 'Difficulty': request.form['Difficulty'],
             })
-    return redirect(url_for('workouts',username=username))
+    return redirect(url_for('workouts', username=username))
 
 
 
