@@ -3,6 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from datetime import datetime as date
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from os import path
@@ -119,6 +120,26 @@ def workouts(username):
     file = mongo.db.files.find({"id": session["user"]})
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     return render_template("workouts.html", username=username,files=file)
+
+
+@app.route("/Add-Workouts/<username>", methods=["GET", "POST"])
+def addworkout(username):
+    file = mongo.db.files.find({"id": session["user"]})
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    if request.method == 'POST':
+        mongo.db.Workouts.insert_one(
+            {
+                'user': session["user"],
+                "Date": date.today().strftime("%d/%m/%Y"),
+                'Title': request.form['Title'],
+                'Routine': request.form['Routine'],
+                'Difficulty': request.form['Difficulty'],
+            })
+    return redirect(url_for('workouts',username=username))
+
+
+
+
 
 
 
