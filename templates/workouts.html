@@ -79,15 +79,7 @@
   </div>
   <!-- Container wrapper -->
 </nav>
-<img src="{{url_for('file', filename=file.profile_image_name)}}"  height="200"  class="rounded-circle my-5">
 {% endfor %}
-<div class="card">
-  <h1> {{ username }}</h1>
-    <form  method="POST" action="{{ url_for('upload', username=session['user']) }}" enctype="multipart/form-data">
-        <input type="hidden" name="id" value=" {{ username }}">
-        <input type="file" class="d-inline" name="profile_image">
-        <input type="submit" name="submit" class="btn primary-button d-inline">
-    </form>
-</div>
+<a><h1>Add</h1></a>
 
 {% endblock %}

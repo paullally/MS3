@@ -114,6 +114,15 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+@app.route("/MyWorkouts/<username>", methods=["GET", "POST"])
+def workouts(username):
+    file = mongo.db.files.find({"id": session["user"]})
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    return render_template("workouts.html", username=username,files=file)
+
+
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
