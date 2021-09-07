@@ -92,7 +92,7 @@
     </p>
     <a href="#" class="btn btn-primary">Button</a>
   </div>
-  <div class="card-footer text-muted">2 days ago</div>
+  <a class="td-link" href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}">delete</a> 
 </div>
 </div>
 {% endfor %}

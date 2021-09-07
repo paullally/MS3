@@ -141,7 +141,11 @@ def addworkout(username):
 
 
 
-
+@app.route('/delete-workout/<username>_<workout_id>')
+def deleteworkout(workout_id, username):
+    workout = list(mongo.db.Workouts.find())
+    mongo.db.Workouts.remove({'_id': ObjectId(workout_id)})
+    return redirect(url_for('workouts', username=username))
 
 
 
