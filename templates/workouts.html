@@ -80,20 +80,32 @@
   <!-- Container wrapper -->
 </nav>
 {% endfor %}
-<div class="row offset-lg-2">
+<div class="row ">
 {% for workout in workouts %}
-<div class="col-lg-3">
+<div class="col-lg-3 my-3">
 <div class="card text-center">
   <div class="card-header">{{workout.Title}}</div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
+    <h5>{{workout.Date}}</h5>
     <p class="card-text">
-      With supporting text below as a natural lead-in to additional content.
+     {{workout.Routine}}
     </p>
-    <a href="#" class="btn btn-primary">Button</a>
+    <div>
+      {% if workout.Difficulty == "Five" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% elif workout.Difficulty == "Four" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% elif workout.Difficulty == "Three" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% elif workout.Difficulty == "Two" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% else %}
+      <i class="fas fa-star"></i>
+      {% endif %}
+    </div>
+    <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary">Edit</a>
+    <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Delete</a>
   </div>
-  <a class="td-link" href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}">delete</a> 
-  <a class="td-link" href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}">edit</a> 
 </div>
 </div>
 {% endfor %}

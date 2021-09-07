@@ -151,16 +151,22 @@ def deleteworkout(workout_id, username):
 def editworkout(workout_id, username):
     edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
     workout = list(mongo.db.Workouts.find({"user": session["user"]}))
-    print(edit)
     return render_template('update-workout.html', username=username, edit=edit, workouts=workout)
 
 
 
 @app.route('/updated-workout/<username>_<workout_id>', methods=['POST'])
 def updateworkout(workout_id, username):
-    workout = list(mongo.db.Workouts.find({"user": session["user"]}))
-    edit = mongo.db.Workouts
-    edit.update({"_id": ObjectId(workout_id)}, { "$set": {"Title":request.form.get('Title')}})
+    edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
+    
+    updates = {
+             'user': session["user"],
+             "Date": edit['Date'],
+             'Title': request.form['Title'],
+             'Routine': request.form['Routine'],
+             'Difficulty': request.form['Difficulty']
+        }
+    mongo.db.Workouts.update({"_id": ObjectId(workout_id)}, updates)
     return redirect(url_for('workouts', username=username))
 
 
