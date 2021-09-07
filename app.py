@@ -156,14 +156,12 @@ def editworkout(workout_id, username):
 
 
 
-@app.route('/update-labdata/<patient_id>/<labdata_id>', methods=['POST'])
-def update_labdata(labdata_id, patient_id):
-    this_patient = mongo.db.patients.find_one({"_id": ObjectId(patient_id)})
-    data = list(mongo.db.labdata.find())
-    labdata = mongo.db.labdata
-    labdata.update({"_id": ObjectId(labdata_id)}, { "$set": {"Type":request.form.get('Type')}})
-    labdata.update({"_id": ObjectId(labdata_id)}, { "$set": {"Status":request.form.get('Status')}})
-    return redirect(url_for('labdata',patient_id=this_patient.get("_id")))
+@app.route('/updated-workout/<username>_<workout_id>', methods=['POST'])
+def updateworkout(workout_id, username):
+    workout = list(mongo.db.Workouts.find({"user": session["user"]}))
+    edit = mongo.db.Workouts
+    edit.update({"_id": ObjectId(workout_id)}, { "$set": {"Title":request.form.get('Title')}})
+    return redirect(url_for('workouts', username=username))
 
 
 
