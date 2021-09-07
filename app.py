@@ -143,9 +143,28 @@ def addworkout(username):
 
 @app.route('/delete-workout/<username>_<workout_id>')
 def deleteworkout(workout_id, username):
-    workout = list(mongo.db.Workouts.find())
     mongo.db.Workouts.remove({'_id': ObjectId(workout_id)})
     return redirect(url_for('workouts', username=username))
+
+
+@app.route('/edit-workout/<username>_<workout_id>')
+def editworkout(workout_id, username):
+    workout = list(mongo.db.Workouts.find({'_id': ObjectId(workout_id)}))
+    return render_template('update-workout.html', username=username, workouts=workout)
+
+
+
+@app.route('/update-labdata/<patient_id>/<labdata_id>', methods=['POST'])
+def update_labdata(labdata_id, patient_id):
+    this_patient = mongo.db.patients.find_one({"_id": ObjectId(patient_id)})
+    data = list(mongo.db.labdata.find())
+    labdata = mongo.db.labdata
+    labdata.update({"_id": ObjectId(labdata_id)}, { "$set": {"Type":request.form.get('Type')}})
+    labdata.update({"_id": ObjectId(labdata_id)}, { "$set": {"Status":request.form.get('Status')}})
+    return redirect(url_for('labdata',patient_id=this_patient.get("_id")))
+
+
+
 
 
 
