@@ -149,8 +149,10 @@ def deleteworkout(workout_id, username):
 
 @app.route('/edit-workout/<username>_<workout_id>')
 def editworkout(workout_id, username):
-    workout = list(mongo.db.Workouts.find({'_id': ObjectId(workout_id)}))
-    return render_template('update-workout.html', username=username, workouts=workout)
+    edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
+    workout = list(mongo.db.Workouts.find({"user": session["user"]}))
+    print(edit)
+    return render_template('update-workout.html', username=username, edit=edit, workouts=workout)
 
 
 

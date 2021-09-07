@@ -93,6 +93,7 @@
     <a href="#" class="btn btn-primary">Button</a>
   </div>
   <a class="td-link" href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}">delete</a> 
+  <a class="td-link" href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}">edit</a> 
 </div>
 </div>
 {% endfor %}
