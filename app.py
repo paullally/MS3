@@ -215,7 +215,20 @@ def updateSharedworkout(workout_id, username):
     mongo.db.Sharedworkouts.update({"_id": ObjectId(workout_id)}, updates)
     return redirect(url_for('sharedworkouts', username=username))
 
-
+@app.route('/Shareexistingworkout/<username>_<workout_id>', methods=['GET','POST'])
+def shareexisitingworkout(workout_id, username):
+    share = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
+    if request.method == 'POST':
+        mongo.db.Sharedworkouts.insert_one(
+            {
+                'user': session["user"],
+                "Date": share['Date'],
+                'Title': share['Title'],
+                'Routine': share['Routine'],
+                'Difficulty': share['Difficulty'],
+            })
+    print(share)
+    return redirect(url_for('workouts', username=username))
 
 
 

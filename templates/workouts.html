@@ -105,6 +105,10 @@
     </div>
     <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary">Edit</a>
     <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Delete</a>
+    <a href="" class="btn btn-danger">Share</a>
+    <form action="{{ url_for('shareexisitingworkout', username=username, workout_id=workout._id) }}"  method="POST">
+      <button type="submit" class="btn btn-sm btn-info" name="something"><i class="fa fa-check"></i>Submit</button>
+  </form>
   </div>
 </div>
 </div>
