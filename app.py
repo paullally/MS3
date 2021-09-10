@@ -193,7 +193,10 @@ def addsharedworkout(username):
             })
     return redirect(url_for('sharedworkouts', username=username))
 
-
+@app.route('/delete-Sharedworkout/<username>_<workout_id>')
+def deleteSharedworkout(workout_id, username):
+    mongo.db.Sharedworkouts.remove({'_id': ObjectId(workout_id)})
+    return redirect(url_for('sharedworkouts', username=username))
 
 
 
