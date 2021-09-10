@@ -169,7 +169,12 @@ def updateworkout(workout_id, username):
     mongo.db.Workouts.update({"_id": ObjectId(workout_id)}, updates)
     return redirect(url_for('workouts', username=username))
 
-
+@app.route("/SharedWorkouts/<username>", methods=["GET", "POST"])
+def sharedworkouts(username):
+    file = mongo.db.files.find({"id": session["user"]})
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    
+    return render_template("sharedworkouts.html", username=username, files=file)
 
 
 
