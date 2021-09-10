@@ -198,7 +198,11 @@ def deleteSharedworkout(workout_id, username):
     mongo.db.Sharedworkouts.remove({'_id': ObjectId(workout_id)})
     return redirect(url_for('sharedworkouts', username=username))
 
-
+@app.route('/edit-Sharedworkout/<username>_<workout_id>')
+def editSharedworkout(workout_id, username):
+    edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
+    workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
+    return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

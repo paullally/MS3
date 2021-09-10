@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block content%}
+{% for file in files %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img
+          src=""
+          height="15"
+          alt=""
+          loading="lazy"
+        />
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">Shared Workouts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Projects</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Avatar -->
+      <a
+        class="dropdown-toggle d-flex align-items-center hidden-arrow"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="{{url_for('file', filename=file.profile_image_name)}}"
+          class="rounded-circle"
+          height="25"
+          alt=""
+          loading="lazy"
+        />
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="navbarDropdownMenuLink"
+      >
+        <li>
+          <a class="dropdown-item" href="{{url_for('profile',username=username)}}">My profile</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+{% endfor %}
+<div class="row ">
+  {% for workout in workouts %}
+  <div class="col-lg-3 my-3">
+  <div class="card text-center">
+    <div class="card-header">{{workout.Title}}</div>
+    <div class="card-body">
+      <h5>{{workout.Date}}</h5>
+      <p class="card-text">
+       {{workout.Routine}}
+      </p>
+      <div>
+        
+        {% if workout.Difficulty == "Five" %}
+        <i class=" fas fa-star" ></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% elif workout.Difficulty == "Four" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% elif workout.Difficulty == "Three" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% elif workout.Difficulty == "Two" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% else %}
+        <i class="fas fa-star"></i>
+        {% endif %}
+      
+      </div>
+      <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary">Edit</a>
+      <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+  </div>
+
+
+<div class="modal" id = "myModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h5 class="modal-title">{{edit.Title}}</h5>
+        
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="new_patient" method="POST" action="{{ url_for('updateworkout', username=username, workout_id=edit._id) }}">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Title of Workout</h5>
+                <input type="text" name="Title"  class="form-control mb-4" placeholder="{{edit.Title}}" value="{{edit.Title}}" required>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Workout Details</h5>
+                <div class="form-outline">
+                  <textarea class="form-control" name="Routine" placeholder="{{edit.Routine}}" value="{{edit.Routine}}" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Difficutly</h5>
+                <select class="form-select" id="Difficulty" name="Difficulty">
+                  <option hidden selected >{{edit.Difficulty}}</option>
+                  <option value="One" >One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option>
+                  <option value="Four">Four</option>
+                  <option value="Five">Five</option>
+                </select>
+              </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<button
+  type="button"
+  class="btn btn-primary"
+  data-mdb-toggle="modal"
+  data-mdb-target="#staticBackdrop"
+>
+  New Workout
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Create New Workout</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="new_patient" method="POST" action="{{url_for('addworkout',username=username)}}">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Title of Workout</h5>
+                <input type="text" name="Title"  class="form-control mb-4" required>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Workout Details</h5>
+                <div class="form-outline">
+                  <textarea class="form-control" name="Routine" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Difficutly</h5>
+                <select class="form-select" id="Difficulty" name="Difficulty">
+                  <option selected>One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option>
+                  <option value="Four">Four</option>
+                  <option value="Five">Five</option>
+                </select>
+              </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
