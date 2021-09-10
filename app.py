@@ -87,7 +87,6 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     file = mongo.db.files.find({"id": session["user"]})
-    print(file)
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username ,files=file)
@@ -120,7 +119,6 @@ def workouts(username):
     file = mongo.db.files.find({"id": session["user"]})
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     workout = list(mongo.db.Workouts.find({"user": session["user"]}))
-    print(workout)
     return render_template("workouts.html", username=username,files=file, workouts=workout)
 
 
@@ -159,7 +157,6 @@ def editworkout(workout_id, username):
 @app.route('/updated-workout/<username>_<workout_id>', methods=['POST'])
 def updateworkout(workout_id, username):
     edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
-    
     updates = {
              'user': session["user"],
              "Date": edit['Date'],
@@ -175,7 +172,6 @@ def sharedworkouts(username):
     file = mongo.db.files.find({"id": session["user"]})
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     sharedworkout = list(mongo.db.Sharedworkouts.find())
-    print(sharedworkout)
     return render_template("sharedworkouts.html", username=username, files=file, workouts=sharedworkout)
 
 
@@ -205,6 +201,23 @@ def editSharedworkout(workout_id, username):
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
     workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
     return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
+
+@app.route('/updated-Sharedworkout/<username>_<workout_id>', methods=['POST'])
+def updateSharedworkout(workout_id, username):
+    edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
+    updates = {
+             'user': session["user"],
+             "Date": edit['Date'],
+             'Title': request.form['Title'],
+             'Routine': request.form['Routine'],
+             'Difficulty': request.form['Difficulty']
+        }
+    mongo.db.Sharedworkouts.update({"_id": ObjectId(workout_id)}, updates)
+    return redirect(url_for('sharedworkouts', username=username))
+
+
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
