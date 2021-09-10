@@ -173,9 +173,24 @@ def updateworkout(workout_id, username):
 def sharedworkouts(username):
     file = mongo.db.files.find({"id": session["user"]})
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
-    
-    return render_template("sharedworkouts.html", username=username, files=file)
+    sharedworkout = list(mongo.db.Sharedworkouts.find())
+    return render_template("sharedworkouts.html", username=username, files=file, workouts=sharedworkout)
 
+
+@app.route("/Add-SharedWorkouts/<username>", methods=["GET", "POST"])
+def addsharedworkout(username):
+    file = mongo.db.files.find({"id": session["user"]})
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    if request.method == 'POST':
+        mongo.db.Sharedworkouts.insert_one(
+            {
+                'user': session["user"],
+                "Date": date.today().strftime("%d/%m/%Y"),
+                'Title': request.form['Title'],
+                'Routine': request.form['Routine'],
+                'Difficulty': request.form['Difficulty'],
+            })
+    return redirect(url_for('sharedworkouts', username=username))
 
 
 
