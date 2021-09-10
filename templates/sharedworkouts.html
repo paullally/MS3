@@ -81,7 +81,37 @@
 </nav>
 {% endfor %}
 <div class="row ">
-</div>
+  {% for workout in workouts %}
+  <div class="col-lg-3 my-3">
+  <div class="card text-center">
+    <div class="card-header">{{workout.Title}}</div>
+    <div class="card-body">
+      <h5>Created by: {{workout.user}}</h5>
+      <p class="card-text">
+       {{workout.Routine}}
+      </p>
+      <div>
+        {% if workout.Difficulty == "Five" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% elif workout.Difficulty == "Four" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% elif workout.Difficulty == "Three" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% elif workout.Difficulty == "Two" %}
+        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        {% else %}
+        <i class="fas fa-star"></i>
+        {% endif %}
+      </div>
+      {% if username == workout.user %}
+      <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary">Edit</a>
+      <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+  </div>
 <button
   type="button"
   class="btn btn-primary"

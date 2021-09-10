@@ -174,6 +174,7 @@ def sharedworkouts(username):
     file = mongo.db.files.find({"id": session["user"]})
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     sharedworkout = list(mongo.db.Sharedworkouts.find())
+    print(sharedworkout)
     return render_template("sharedworkouts.html", username=username, files=file, workouts=sharedworkout)
 
 
