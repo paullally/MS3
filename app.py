@@ -149,9 +149,10 @@ def deleteworkout(workout_id, username):
 
 @app.route('/edit-workout/<username>_<workout_id>')
 def editworkout(workout_id, username):
+    file = mongo.db.files.find({"id": session["user"]})
     edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
     workout = list(mongo.db.Workouts.find({"user": session["user"]}))
-    return render_template('update-workout.html', username=username, edit=edit, workouts=workout)
+    return render_template('update-workout.html', username=username, edit=edit, workouts=workout,files=file)
 
 
 
@@ -200,9 +201,10 @@ def deleteSharedworkout(workout_id, username):
 
 @app.route('/edit-Sharedworkout/<username>_<workout_id>')
 def editSharedworkout(workout_id, username):
+    file = mongo.db.files.find({"id": session["user"]})
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
     workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
-    return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout)
+    return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
