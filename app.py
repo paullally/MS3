@@ -86,7 +86,7 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username ,files=file)
@@ -116,7 +116,7 @@ def logout():
 
 @app.route("/MyWorkouts/<username>", methods=["GET", "POST"])
 def workouts(username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     workout = list(mongo.db.Workouts.find({"user": session["user"]}))
     return render_template("workouts.html", username=username,files=file, workouts=workout)
@@ -124,7 +124,7 @@ def workouts(username):
 
 @app.route("/Add-Workouts/<username>", methods=["GET", "POST"])
 def addworkout(username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     if request.method == 'POST':
         mongo.db.Workouts.insert_one(
@@ -147,7 +147,7 @@ def deleteworkout(workout_id, username):
 
 @app.route('/edit-workout/<username>_<workout_id>')
 def editworkout(workout_id, username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
     workout = list(mongo.db.Workouts.find({"user": session["user"]}))
     return render_template('update-workout.html', username=username, edit=edit, workouts=workout,files=file)
@@ -169,7 +169,7 @@ def updateworkout(workout_id, username):
 
 @app.route("/SharedWorkouts/<username>", methods=["GET", "POST"])
 def sharedworkouts(username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     sharedworkout = list(mongo.db.Sharedworkouts.find())
     return render_template("sharedworkouts.html", username=username, files=file, workouts=sharedworkout)
@@ -177,7 +177,7 @@ def sharedworkouts(username):
 
 @app.route("/Add-SharedWorkouts/<username>", methods=["GET", "POST"])
 def addsharedworkout(username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     if request.method == 'POST':
         mongo.db.Sharedworkouts.insert_one(
@@ -197,7 +197,7 @@ def deleteSharedworkout(workout_id, username):
 
 @app.route('/edit-Sharedworkout/<username>_<workout_id>')
 def editSharedworkout(workout_id, username):
-    file = mongo.db.files.find({"id": session["user"]})
+    file = list(mongo.db.files.find({"id": session["user"]}))
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
     workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
     return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
