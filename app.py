@@ -233,6 +233,27 @@ def shareexisitingworkout(workout_id, username):
     return redirect(url_for('workouts', username=username))
 
 
+@app.route("/Add-Goal/<username>", methods=["GET", "POST"])
+def addgoal(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    if request.method == 'POST':
+        mongo.db.Goals.insert_one(
+            {
+                'user': session["user"],
+                "Date": date.today().strftime("%d/%m/%Y"),
+                'Title': request.form['Title'],
+                'Details': request.form['Details'],
+                'Completed': False
+            })
+    return redirect(url_for('profile', username=username,files=file))
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

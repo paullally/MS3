@@ -124,29 +124,78 @@ loading="lazy"
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Raw denim you
-        probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master
-        cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-        keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip
-        placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
-        qui.</div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Food truck fixie
-        locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit,
-        blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-        Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
-        PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
-        salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
-        sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Etsy mixtape
-        wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack
-        lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
-        locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
-        squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie
-        etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog
-        stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-header">
+          Quote
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+</div>
+
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-mdb-toggle="modal"
+  data-mdb-target="#exampleModal"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Goal</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="new_patient" method="POST" action="{{url_for('addgoal',username=username)}}">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Goal Title</h5>
+                <input type="text" name="Title"  class="form-control mb-4" required>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Goal Details</h5>
+                <div class="form-outline">
+                  <textarea class="form-control" name="Details" rows="4"></textarea>
+                </div>
+              </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 {% endblock %}
