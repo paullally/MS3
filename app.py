@@ -87,9 +87,11 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
+    goal = list(mongo.db.Goals.find({"user": session["user"]}))
+    print(goal)
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username ,files=file)
+    return render_template("profile.html", username=username ,files=file,goals=goal)
 
 @app.route('/Upload/<username>', methods=['POST'])
 def upload(username):
