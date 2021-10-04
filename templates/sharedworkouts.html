@@ -81,7 +81,7 @@ loading="lazy"
         aria-labelledby="navbarDropdownMenuLink"
       >
         <li>
-          <a class="dropdown-item" href="#">My profile</a>
+          <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
         </li>
         <li>
           <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
@@ -99,6 +99,15 @@ loading="lazy"
     <div class="card-header">{{workout.Title}}</div>
     <div class="card-body">
       <h5>Created by: {{workout.user}}</h5>
+      {% for file in files %}
+      <img
+      src="{{url_for('file', filename=file.profile_image_name)}}"
+      class="rounded-circle"
+      height="25"
+      alt=""
+      loading="lazy"
+    />
+    {% endfor %}
       <p class="card-text">
        {{workout.Routine}}
       </p>
