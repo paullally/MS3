@@ -102,9 +102,12 @@ def upload(username):
     if not test:
         mongo.save_file(profile_image.filename,profile_image)
         mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
-        return "<h1>DonE!!!</h1>"
+        return redirect(url_for("profile", username=username))
     else:
-        return "<h1>error</h1>"
+        mongo.db.files.remove({"id": session["user"]})
+        mongo.save_file(profile_image.filename,profile_image)
+        mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
+        return redirect(url_for("profile", username=username))
 
 @app.route('/file/<filename>')
 def file(filename):
