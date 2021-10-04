@@ -81,7 +81,7 @@ loading="lazy"
         aria-labelledby="navbarDropdownMenuLink"
       >
         <li>
-          <a class="dropdown-item" href="#">My profile</a>
+          <a class="dropdown-item" href="">My profile</a>
         </li>
         <li>
           <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
@@ -115,11 +115,11 @@ loading="lazy"
           aria-selected="true">All Goals</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab" aria-controls="profile"
           aria-selected="false">Completed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogess',username=username) }}" role="tab" aria-controls="contact"
           aria-selected="false">In Progress</a>
       </li>
     </ul>

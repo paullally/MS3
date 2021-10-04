@@ -88,7 +88,22 @@ def login():
 def profile(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
     goal = list(mongo.db.Goals.find({"user": session["user"]}))
-    print(goal)
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("profile.html", username=username ,files=file,goals=goal)
+
+@app.route("/profile-completed/<username>", methods=["GET", "POST"])
+def profilecompleted(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":True}))
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("profile.html", username=username ,files=file,goals=goal)
+
+@app.route("/profile-inprogress/<username>", methods=["GET", "POST"])
+def profileinprogess(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":False}))
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username ,files=file,goals=goal)
