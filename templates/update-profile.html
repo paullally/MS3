@@ -196,7 +196,119 @@ loading="lazy"
   </div>
 </div>
 
-
+<button
+  type="button"
+  class="btn btn-primary"
+  data-mdb-toggle="modal"
+  data-mdb-target="#taticBackdrop"
+>
+  New Workout
+</button>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="taticBackdrop"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Create New Workout</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="new_patient" method="POST" action="{{url_for('addworkout',username=username)}}">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Title of Workout</h5>
+                <input type="text" name="Title"  class="form-control mb-4" required>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Workout Details</h5>
+                <div class="form-outline">
+                  <textarea class="form-control" name="Routine" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Difficutly</h5>
+                <select class="form-select" id="Difficulty" name="Difficulty">
+                  <option selected>One</option>
+                  <option value="Two">Two</option>
+                  <option value="Three">Three</option>
+                  <option value="Four">Four</option>
+                  <option value="Five">Five</option>
+                </select>
+              </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-mdb-backdrop="static"
+  data-mdb-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Goal</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="new_patient" method="POST" action="{{ url_for('updategoal', username=username, goal_id=edit._id) }}">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Title of Goal</h5>
+                <input type="text" name="Title" value="{{edit.Title}}"  class="form-control mb-4" required>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Description of Goal</h5>
+                <div class="form-outline">
+                  <textarea class="form-control" name="Details" rows="4" placeholder="{{edit.Details}}" value="{{edit.Details}}"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5 class="small-heading">Status</h5>
+                <select class="form-select" id="Completed" name="Completed">
+                  <option hidden selected >{{edit.Completed}}</option>
+                  <option value="Complete" >Complete</option>
+                  <option value="Incomplete">Incomplete</option>
+                </select>
+              </div>
+            <div class="d-flex justify-content-between mt-3">
+              <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
