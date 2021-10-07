@@ -94,19 +94,24 @@ loading="lazy"
 </nav>
 {% if files|length %}
 {% for file in files %}
-<img src="{{url_for('file', filename=file.profile_image_name)}}"  height="200"  class="rounded-circle my-5">
+<img src="{{url_for('file', filename=file.profile_image_name)}}"  height="200"  class="rounded-circle my-5" >
+<i class="fas fa-camera fas-x3"></i>
 {% endfor %}
 {% else %}
 <img src="https://via.placeholder.com/150"  height="200"  class="rounded-circle my-5">
+
 {% endif %}
-<div class="card">
-  <h1> {{ username }}</h1>
-    <form  method="POST" action="{{ url_for('upload', username=session['user']) }}" enctype="multipart/form-data">
-        <input type="hidden" name="id" value=" {{ username }}">
-        <input type="file" class="d-inline" name="profile_image">
-        <input type="submit" name="submit" class="btn primary-button d-inline">
-    </form>
+
+  <div class="card">
+    <h1> {{ username }}</h1>
+      <form  method="POST" action="{{ url_for('upload', username=session['user']) }}" enctype="multipart/form-data">
+          <input type="hidden" name="id" value=" {{ username }}">
+          <input type="file" class="d-inline" name="profile_image">
+          <input type="submit" name="submit" class="btn primary-button d-inline">
+      </form>
+  </div>
 </div>
+
 <div class="row">
   <div class="col-lg-12">
     <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
@@ -196,9 +201,5 @@ New Goal
     </div>
   </div>
 </div>
-
-
-
-
 
 {% endblock %}
