@@ -81,7 +81,7 @@ loading="lazy"
         aria-labelledby="navbarDropdownMenuLink"
       >
         <li>
-          <a class="dropdown-item" href="">My profile</a>
+          <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
         </li>
         <li>
           <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
@@ -137,6 +137,7 @@ loading="lazy"
         </div>
       </div>
       <a href="{{ url_for('editgoal', username=username, goal_id=goal._id) }}" class="btn btn-primary">Edit</a>
+      <a href="{{ url_for('deletegoal', username=username, goal_id=goal._id) }}" class="btn btn-danger">Delete</a>
     </div>
     {% endfor %}
   </div>

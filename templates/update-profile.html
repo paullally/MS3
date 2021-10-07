@@ -81,7 +81,7 @@ loading="lazy"
         aria-labelledby="navbarDropdownMenuLink"
       >
         <li>
-          <a class="dropdown-item" href="">My profile</a>
+          <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
         </li>
         <li>
           <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
@@ -195,7 +195,6 @@ loading="lazy"
     </div>
   </div>
 </div>
-
 <button
   type="button"
   class="btn btn-primary"

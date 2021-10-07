@@ -290,6 +290,12 @@ def updategoal(goal_id, username):
     mongo.db.Goals.update({"_id": ObjectId(goal_id)}, updates)
     return redirect(url_for('profile', username=username,files=file))
 
+@app.route('/delete-goal/<username>_<goal_id>')
+def deletegoal(goal_id, username):
+    mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
+    return redirect(url_for('profile', username=username,files=file))
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
