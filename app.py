@@ -95,7 +95,7 @@ def profile(username):
 @app.route("/profile-completed/<username>", methods=["GET", "POST"])
 def profilecompleted(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
-    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":True}))
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Complete"}))
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username ,files=file,goals=goal)
@@ -103,7 +103,7 @@ def profilecompleted(username):
 @app.route("/profile-inprogress/<username>", methods=["GET", "POST"])
 def profileinprogess(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
-    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":False}))
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Incomplete"}))
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username ,files=file,goals=goal)
@@ -270,9 +270,25 @@ def addgoal(username):
 
 
 
+@app.route('/edit-goal/<username>_<goal_id>')
+def editgoal(goal_id, username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    goal = list(mongo.db.Goals.find({"user": session["user"]}))
+    return render_template('update-profile.html', username=username, edit=edit, goals=goal,files=file)
 
-
-
+@app.route('/updated-goal/<username>_<goal_id>', methods=['POST'])
+def updategoal(goal_id, username):
+    edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    updates = {
+             'user': session["user"],
+             "Date": edit['Date'],
+             'Title': request.form['Title'],
+             'Details': request.form['Details'],
+             'Completed': request.form['Completed']
+        }
+    mongo.db.Goals.update({"_id": ObjectId(goal_id)}, updates)
+    return redirect(url_for('profile', username=username,files=file))
 
 
 if __name__ == "__main__":

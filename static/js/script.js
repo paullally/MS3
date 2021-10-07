@@ -1,3 +1,3 @@
 $(window).on('load', function() {
-    $('#myModal').modal('show');
+    $('#staticBackdrop').appendTo("body").modal('show');
 })
