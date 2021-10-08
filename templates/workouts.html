@@ -93,22 +93,26 @@ loading="lazy"
   <!-- Container wrapper -->
 </nav>
 <div class="row ">
-  <div class="col-lg-3 offset-lg-6 my-5">
+  <div class="col-lg-2 offset-lg-5 my-5">
     <h3>Search for Workout</h3>
-    <div class="input-group">
-      <div class="form-outline">
-        <input id="search-input" type="search" id="form1" class="form-control" />
-        <label class="form-label" for="form1">Workout Title</label>
+    <form class="form-inline" action="{{ url_for('search') }}" method="POST">
+      <div class="input-group">
+        <div class="form-outline">
+          <input id="search-input" type="search" name="query" id="query" class="form-control" />
+          <label class="form-label" for="form1">Workout Title</label>
+        </div>
+        <button id="search-button" type="submit" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
-      <button id="search-button" type="button" class="btn btn-primary">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
+    </form>
+  
   </div>
-  <div class="col-lg-6 offset-lg-6">
+  <div class="col-lg-2 offset-lg-5">
     <h3>Filter Difficulty:</h3>
     <i class="fas fa-star fa-2x filter" id="filter1"></i><i class="fas fa-star fa-2x filter"  id="filter2"></i><i class="fas fa-star fa-2x filter"  id="filter3"></i><i class="fas fa-star fa-2x filter"  id="filter4"></i><i class="fas fa-star fa-2x filter"  id="filter5"></i>
   </div>
+  <div class="col-lg-3"></div>
 {% for workout in workouts %}
 <div class="col-lg-3 my-3">
 <div class="card text-center">

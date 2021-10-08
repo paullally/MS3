@@ -296,10 +296,25 @@ def deletegoal(goal_id, username):
     return redirect(url_for('profile', username=username,files=file))
 
 @app.route('/edit-profilepicture/<username>')
-def editprofilepicture( username):
+def editprofilepicture(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
     goal = list(mongo.db.Goals.find({"user": session["user"]}))
     return render_template('update-profilepicture.html', username=username,goals=goal,files=file)
+
+@app.route("/search-workouts", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    workout = list(mongo.db.Workouts.find({"$text": {"$search": query}}))
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    return render_template("workouts.html", username=username,files=file, workouts=workout)
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
