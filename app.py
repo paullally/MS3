@@ -21,8 +21,12 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-def test():
+def home():
     return render_template('login.html')
+
+@app.route("/new-user")
+def newuser():
+    return render_template('register.html')
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -201,6 +205,7 @@ def addsharedworkout(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     if request.method == 'POST':
+        saved=[]
         mongo.db.Sharedworkouts.insert_one(
             {
                 'user': session["user"],
@@ -208,6 +213,7 @@ def addsharedworkout(username):
                 'Title': request.form['Title'],
                 'Routine': request.form['Routine'],
                 'Difficulty': request.form['Difficulty'],
+                'Savedby': saved
             })
     return redirect(url_for('sharedworkouts', username=username))
 
@@ -223,18 +229,28 @@ def editSharedworkout(workout_id, username):
     workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
     return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
 
-@app.route('/updated-Sharedworkout/<username>_<workout_id>', methods=['POST'])
-def updateSharedworkout(workout_id, username):
+@app.route('/save-Sharedworkout/<username>_<workout_id>')
+def saveSharedworkout(workout_id, username):
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
-    updates = {
-             'user': session["user"],
-             "Date": edit['Date'],
-             'Title': request.form['Title'],
-             'Routine': request.form['Routine'],
-             'Difficulty': request.form['Difficulty']
-        }
-    mongo.db.Sharedworkouts.update({"_id": ObjectId(workout_id)}, updates)
+    saved= edit['Savedby']
+    if session["user"] in  saved:
+        return redirect(url_for('sharedworkouts', username=username))
+    else:
+         saved.append(session["user"])
+         updates = {
+                'user': edit['user'],
+                "Date": edit['Date'],
+                'Title': edit['Title'],
+                'Routine': edit['Routine'],
+                'Difficulty': edit['Difficulty'],
+                'Savedby': saved
+            }
+         mongo.db.Sharedworkouts.update({"_id": ObjectId(workout_id)}, updates)
     return redirect(url_for('sharedworkouts', username=username))
+
+
+
+
 
 @app.route('/Shareexistingworkout/<username>_<workout_id>', methods=['GET','POST'])
 def shareexisitingworkout(workout_id, username):

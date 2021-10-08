@@ -127,7 +127,10 @@ loading="lazy"
       {% if username == workout.user %}
       <a href="{{ url_for('editSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary">Edit</a>
       <a href="{{ url_for('deleteSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Delete</a>
+      {% else %}
+      <a href="{{ url_for('saveSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Save</a>
       {% endif %}
+      
     </div>
   </div>
   </div>
