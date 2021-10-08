@@ -94,7 +94,7 @@ loading="lazy"
 </nav>
 <div class="row ">
   {% for workout in workouts %}
- 
+  {%if username in workout.Savedby%}
   <div class="col-lg-3 my-3">
   <div class="card text-center">
     <div class="card-header">{{workout.Title}}</div>
@@ -135,6 +135,7 @@ loading="lazy"
     </div>
   </div>
   </div>
+  {% endif %}
   {% endfor %}
   </div>
 <button
