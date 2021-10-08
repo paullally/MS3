@@ -94,21 +94,18 @@ loading="lazy"
 </nav>
 {% if files|length %}
 {% for file in files %}
-<img src="{{url_for('file', filename=file.profile_image_name)}}"  height="200"  class="rounded-circle my-5" >
-<i class="fas fa-camera fas-x3"></i>
+<img src="{{url_for('file', filename=file.profile_image_name)}}"  height="200"  width="200" class="rounded-circle my-5" >
+
 {% endfor %}
 {% else %}
-<img src="https://via.placeholder.com/150"  height="200"  class="rounded-circle my-5">
+<img src="https://via.placeholder.com/150"  height="200"  width="200" class="rounded-circle my-5">
 
 {% endif %}
-
   <div class="card">
-    <h1> {{ username }}</h1>
-      <form  method="POST" action="{{ url_for('upload', username=session['user']) }}" enctype="multipart/form-data">
-          <input type="hidden" name="id" value=" {{ username }}">
-          <input type="file" class="d-inline" name="profile_image">
-          <input type="submit" name="submit" class="btn primary-button d-inline">
-      </form>
+    <div class="yoke">
+      <h1> {{ username }} <a href="{{url_for('editprofilepicture', username=username)}}"><i class="fas fa-camera"></i></a></h1>
+     
+    </div>
   </div>
 </div>
 

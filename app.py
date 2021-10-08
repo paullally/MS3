@@ -295,7 +295,11 @@ def deletegoal(goal_id, username):
     mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
     return redirect(url_for('profile', username=username,files=file))
 
-
+@app.route('/edit-profilepicture/<username>')
+def editprofilepicture( username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    goal = list(mongo.db.Goals.find({"user": session["user"]}))
+    return render_template('update-profilepicture.html', username=username,goals=goal,files=file)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
