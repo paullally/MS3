@@ -325,6 +325,12 @@ def workouts2(username):
     workout = list(mongo.db.Workouts.find({"user": session["user"],"Difficulty":"Two"}))
     return render_template("workouts.html", username=username,files=file, workouts=workout)
 
+@app.route("/MyWorkouts-difficulty-3/<username>", methods=["GET", "POST"])
+def workouts3(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    workout = list(mongo.db.Workouts.find({"user": session["user"],"Difficulty":"Three"}))
+    return render_template("workouts.html", username=username,files=file, workouts=workout)
 
 
 
