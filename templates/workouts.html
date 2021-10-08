@@ -113,8 +113,8 @@ loading="lazy"
     <a href="{{ url_for('workouts1',username=username) }}"><i class="fas fa-star fa-2x filter" id="filter1"></i></a>
     <a href="{{ url_for('workouts2',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter2"></i></a>
     <a href="{{ url_for('workouts3',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter3"></i></a>
-  <i class="fas fa-star fa-2x filter"  id="filter4"></i>
-  <i class="fas fa-star fa-2x filter"  id="filter5"></i>
+    <a href="{{ url_for('workouts4',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter4"></i></a>
+    <a href="{{ url_for('workouts5',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter5"></i></a>
   </div>
   <div class="col-lg-3"></div>
 {% for workout in workouts %}
