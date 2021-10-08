@@ -2,7 +2,8 @@
 {
     color: gold
 }
-.yoke
+.filter
 {
-    display: block;
+    color: grey;
+    opacity: 0.9;
 }
