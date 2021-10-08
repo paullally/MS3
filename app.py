@@ -311,6 +311,12 @@ def search():
 
 
 
+@app.route("/MyWorkouts-difficulty-1/<username>", methods=["GET", "POST"])
+def workouts1(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    workout = list(mongo.db.Workouts.find({"user": session["user"],"Difficulty":"One"}))
+    return render_template("workouts.html", username=username,files=file, workouts=workout)
 
 
 

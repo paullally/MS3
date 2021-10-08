@@ -110,7 +110,7 @@ loading="lazy"
   </div>
   <div class="col-lg-2 offset-lg-5">
     <h3>Filter Difficulty:</h3>
-    <i class="fas fa-star fa-2x filter" id="filter1"></i><i class="fas fa-star fa-2x filter"  id="filter2"></i><i class="fas fa-star fa-2x filter"  id="filter3"></i><i class="fas fa-star fa-2x filter"  id="filter4"></i><i class="fas fa-star fa-2x filter"  id="filter5"></i>
+    <a href="{{ url_for('workouts1',username=username) }}"><i class="fas fa-star fa-2x filter" id="filter1"></i></a></i><i class="fas fa-star fa-2x filter"  id="filter2"></i><i class="fas fa-star fa-2x filter"  id="filter3"></i><i class="fas fa-star fa-2x filter"  id="filter4"></i><i class="fas fa-star fa-2x filter"  id="filter5"></i>
   </div>
   <div class="col-lg-3"></div>
 {% for workout in workouts %}
