@@ -199,6 +199,12 @@ def sharedworkouts(username):
     sharedworkout = list(mongo.db.Sharedworkouts.find())
     return render_template("sharedworkouts.html", username=username, files=file, workouts=sharedworkout)
 
+@app.route("/Saved-SharedWorkouts/<username>", methods=["GET", "POST"])
+def savedsharedworkouts(username):
+    file = list(mongo.db.files.find())
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    sharedworkout = list(mongo.db.Sharedworkouts.find())
+    return render_template("savedsharedworkouts.html", username=username, files=file, workouts=sharedworkout)
 
 @app.route("/Add-SharedWorkouts/<username>", methods=["GET", "POST"])
 def addsharedworkout(username):

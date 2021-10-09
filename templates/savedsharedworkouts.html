@@ -56,6 +56,7 @@
       >
       {% if files|length %}
       {% for file in files %}
+      {% if file.id==username %}
       <img
         src="{{url_for('file', filename=file.profile_image_name)}}"
         class="rounded-circle"
@@ -63,6 +64,7 @@
         alt=""
         loading="lazy"
       />
+      {% endif %}
       {% endfor %}
     
 {% else %}
@@ -101,6 +103,7 @@ loading="lazy"
     <div class="card-body">
       <h5>Created by: {{workout.user}}</h5>
       {% for file in files %}
+      {% if file.id==workout.user %}
       <img
       src="{{url_for('file', filename=file.profile_image_name)}}"
       class="rounded-circle"
@@ -108,6 +111,7 @@ loading="lazy"
       alt=""
       loading="lazy"
     />
+    {% endif %}
     {% endfor %}
       <p class="card-text">
        {{workout.Routine}}
@@ -135,7 +139,7 @@ loading="lazy"
     </div>
   </div>
   </div>
-  {% endif %}
+  {% endif%}
   {% endfor %}
   </div>
 <button
