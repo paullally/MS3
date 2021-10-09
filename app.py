@@ -194,7 +194,7 @@ def updateworkout(workout_id, username):
 
 @app.route("/SharedWorkouts/<username>", methods=["GET", "POST"])
 def sharedworkouts(username):
-    file = list(mongo.db.files.find({"id": session["user"]}))
+    file = list(mongo.db.files.find())
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     sharedworkout = list(mongo.db.Sharedworkouts.find())
     return render_template("sharedworkouts.html", username=username, files=file, workouts=sharedworkout)
