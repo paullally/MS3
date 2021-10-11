@@ -1,126 +1,104 @@
 {% extends "base.html" %}
 {% block content%}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+<div class="main-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a class="navbar-brand mt-2 mt-lg-0" href="#">
+          <img
+            src=""
+            height="15"
+            alt=""
+            loading="lazy"
+          />
+        </a>
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">All Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Projects</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+  
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+        <!-- Avatar -->
+        <a
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+        {% if files|length %}
+        {% for file in files %}
         <img
-          src=""
-          height="15"
+          src="{{url_for('file', filename=file.profile_image_name)}}"
+          class="rounded-circle"
+          height="25"
           alt=""
           loading="lazy"
         />
-      </a>
-      <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">All Workouts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
-      </ul>
-      <!-- Left links -->
+        {% endfor %}
+      
+  {% else %}
+  <img src="https://via.placeholder.com/150" class="rounded-circle" height="25" alt="" loading="lazy"/>
+  {% endif %}
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Right elements -->
     </div>
-    <!-- Collapsible wrapper -->
-
-    <!-- Right elements -->
-    <div class="d-flex align-items-center">
-      <!-- Avatar -->
-      <a
-        class="dropdown-toggle d-flex align-items-center hidden-arrow"
-        href="#"
-        id="navbarDropdownMenuLink"
-        role="button"
-        data-mdb-toggle="dropdown"
-        aria-expanded="false"
-      >
-      {% if files|length %}
-      {% for file in files %}
-      <img
-        src="{{url_for('file', filename=file.profile_image_name)}}"
-        class="rounded-circle"
-        height="25"
-        alt=""
-        loading="lazy"
-      />
-      {% endfor %}
-    
-{% else %}
-<img
-src="https://via.placeholder.com/150"
-class="rounded-circle"
-height="25"
-alt=""
-loading="lazy"
-/>
-{% endif %}
-     
-      </a>
-      <ul
-        class="dropdown-menu dropdown-menu-end"
-        aria-labelledby="navbarDropdownMenuLink"
-      >
-        <li>
-          <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-      </ul>
-    </div>
-    <!-- Right elements -->
-  </div>
-  <!-- Container wrapper -->
-</nav>
-{% if files|length %}
-{% for file in files %}
-<img src="{{url_for('file', filename=file.profile_image_name)}}"  height="200"  width="200" class="rounded-circle my-5" >
-
-{% endfor %}
-{% else %}
-<img src="https://via.placeholder.com/150"  height="200"  width="200" class="rounded-circle my-5">
-
-{% endif %}
-  <div class="card">
-    <div class="yoke">
-      <h1> {{ username }} <a href="{{url_for('editprofilepicture', username=username)}}"><i class="fas fa-camera"></i></a></h1>
-     
-    </div>
-  </div>
-</div>
+    <!-- Container wrapper -->
+  </nav>
 
 <div class="row">
   <div class="col-lg-12">
     <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+        <a class="nav-link active mininav" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
           aria-selected="true">All Goals</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab" aria-controls="profile"
+        <a class="nav-link mininav" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab" aria-controls="profile"
           aria-selected="false">Completed</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item mininav">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogess',username=username) }}" role="tab" aria-controls="contact"
           aria-selected="false">In Progress</a>
       </li>
@@ -218,9 +196,9 @@ New Goal
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div class="text-center p-3" style="background-color: var(--green);">
     © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <a class="text-white">KeepingFit</a>
   </div>
   <!-- Copyright -->
 </footer>
@@ -267,5 +245,8 @@ New Goal
   </div>
  
 </div>
-
+</div>
 {% endblock %}
+
+ 
+   
