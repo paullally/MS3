@@ -102,7 +102,7 @@ def profilecompleted(username):
     goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Complete"}))
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username ,files=file,goals=goal)
+    return render_template("profile-completed.html", username=username ,files=file,goals=goal)
 
 @app.route("/profile-inprogress/<username>", methods=["GET", "POST"])
 def profileinprogess(username):
@@ -110,7 +110,7 @@ def profileinprogess(username):
     goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Incomplete"}))
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username ,files=file,goals=goal)
+    return render_template("profile-inprogress.html", username=username ,files=file,goals=goal)
 
 @app.route('/Upload/<username>', methods=['POST'])
 def upload(username):
@@ -286,7 +286,7 @@ def addgoal(username):
                 "Date": date.today().strftime("%d/%m/%Y"),
                 'Title': request.form['Title'],
                 'Details': request.form['Details'],
-                'Completed': False
+                'Completed': "Incomplete"
             })
     return redirect(url_for('profile', username=username,files=file))
 
@@ -302,11 +302,15 @@ def editgoal(goal_id, username):
 @app.route('/updated-goal/<username>_<goal_id>', methods=['POST'])
 def updategoal(goal_id, username):
     edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    if not request.form['Details']:
+        details = edit["Details"]
+    else:
+         details = request.form['Details']
     updates = {
              'user': session["user"],
              "Date": edit['Date'],
              'Title': request.form['Title'],
-             'Details': request.form['Details'],
+             'Details': details,
              'Completed': request.form['Completed']
         }
     mongo.db.Goals.update({"_id": ObjectId(goal_id)}, updates)
