@@ -305,7 +305,7 @@ def updategoal(goal_id, username):
     if not request.form['Details']:
         details = edit["Details"]
     else:
-         details = request.form['Details']
+        details = request.form['Details']
     updates = {
              'user': session["user"],
              "Date": edit['Date'],
@@ -315,6 +315,38 @@ def updategoal(goal_id, username):
         }
     mongo.db.Goals.update({"_id": ObjectId(goal_id)}, updates)
     return redirect(url_for('profile', username=username,files=file))
+
+
+@app.route('/edit-goalcompleted/<username>_<goal_id>')
+def editgoalcompleted(goal_id, username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Complete"}))
+    return render_template('update-profile-completed.html', username=username, edit=edit, goals=goal,files=file)
+
+
+
+@app.route('/updated-completedgoal/<username>_<goal_id>', methods=['POST'])
+def updategoalcompleted(goal_id, username):
+    edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    if not request.form['Details']:
+        details = edit["Details"]
+    else:
+        details = request.form['Details']
+    updates = {
+             'user': session["user"],
+             "Date": edit['Date'],
+             'Title': request.form['Title'],
+             'Details': details,
+             'Completed': request.form['Completed']
+        }
+    mongo.db.Goals.update({"_id": ObjectId(goal_id)}, updates)
+    return redirect(url_for('profilecompleted', username=username,files=file))
+
+
+
+
+
 
 @app.route('/delete-goal/<username>_<goal_id>')
 def deletegoal(goal_id, username):
