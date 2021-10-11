@@ -1,6 +1,27 @@
+:root {
+    /*p for primary, s for secondary, t for tertiary*/
+    --black:#0C1618;
+    --green: #004643;
+    --cream: #FDFBED;
+    --blue:#429EA6;
+    --orange: #FF784F;
+  }
+
+.card
+{
+    background-color: var(--cream);
+}
+.navbar
+{
+    background-color: var(--green)!important
+}
+.nav-link
+{
+    color: white!important;
+}
 .fa-star
 {
-    color: gold
+    color: var(--orange)
 }
 .filter
 {
