@@ -79,7 +79,29 @@
 {
     border-color:var(--orange)!important
 }
-fa-camera
+.fa-camera
 {
-    color:var(--blue)
+    color:var(--green)
+}
+.edit
+{
+    background-color: var(--blue)!important;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    border-radius: 5%;
+}
+.delete
+{
+    background-color: var(--orange)!important;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    border-radius: 5%;
+}
+.goalbutton
+{ 
+    background-color: var(--black)!important;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    border-radius: 5%;
+
 }
