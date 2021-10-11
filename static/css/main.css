@@ -79,17 +79,7 @@
 {
     border-color:var(--orange)!important
 }
-.tab-content
-{
-    overflow-y: scroll;
-    max-height: 600px;
-}
-.fa-camera
+fa-camera
 {
     color:var(--blue)
 }
-#mybutton {
-    position: fixed;
-    bottom: -4px;
-    right: 10px;
-  }
