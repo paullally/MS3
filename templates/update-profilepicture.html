@@ -112,7 +112,7 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-between mt-3">
-                  <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+                  <button type="submit" class="btn btn-primary edit">Save</button>
                 </div>
               </div>
           </form>
@@ -185,7 +185,7 @@
                 </select>
               </div>
               <div class="d-flex justify-content-between mt-3">
-                <button type="submit" class="btn btn-primary btn-rounded">Save</button>
+                <button type="submit" class="btn btn-primary btn-rounded edit">Save</button>
               </div>
             </div>
         </form>
@@ -203,8 +203,8 @@
       <div class="modal-body">
         <form method="POST" action="{{ url_for('upload', username=session['user']) }}" enctype="multipart/form-data">
           <input type="hidden" name="id" value=" {{ username }}">
-          <input type="file" class="d-inline" name="profile_image">
-          <input type="submit" name="submit" class="btn primary-button d-inline">
+          <input type="file" class="form-control" id="customFile" name="profile_image"/>
+          <input type="submit" name="submit" class="btn primary-button submit d-inline my-3">
         </form>
       </div>
     </div>

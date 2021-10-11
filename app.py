@@ -323,7 +323,11 @@ def editgoalcompleted(goal_id, username):
     edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
     goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Complete"}))
     return render_template('update-profile-completed.html', username=username, edit=edit, goals=goal,files=file)
-
+    
+@app.route('/delete-goal/<username>_<goal_id>')
+def deletegoal(goal_id, username):
+    mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
+    return redirect(url_for('profile', username=username,files=file))
 
 
 @app.route('/updated-completedgoal/<username>_<goal_id>', methods=['POST'])
@@ -344,14 +348,10 @@ def updategoalcompleted(goal_id, username):
     return redirect(url_for('profilecompleted', username=username,files=file))
 
 
-
-
-
-
-@app.route('/delete-goal/<username>_<goal_id>')
-def deletegoal(goal_id, username):
+@app.route('/delete-goalcompleted/<username>_<goal_id>')
+def deletegoalcompleted(goal_id, username):
     mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
-    return redirect(url_for('profile', username=username,files=file))
+    return redirect(url_for('profilecompleted', username=username,files=file))
 
 @app.route('/edit-profilepicture/<username>')
 def editprofilepicture(username):
