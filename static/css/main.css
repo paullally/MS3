@@ -79,3 +79,12 @@
 {
     border-color:var(--orange)!important
 }
+.tab-content
+{
+    overflow-y: scroll;
+    max-height: 600px;
+}
+.fa-camera
+{
+    color:var(--blue)
+}
