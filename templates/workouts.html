@@ -94,8 +94,8 @@ loading="lazy"
   <!-- Container wrapper -->
 </nav>
 <div class="row">
-  <div class="col-lg-2 offset-lg-5 my-5">
-    <h3>Search for Workout</h3>
+  <div class="col-lg-12 d-flex justify-content-center my-5">
+    <h3>Search for Workout:</h3>
     <form class="form-inline" action="{{ url_for('search') }}" method="POST">
       <div class="input-group">
         <div class="form-outline">
@@ -109,7 +109,7 @@ loading="lazy"
     </form>
   
   </div>
-  <div class="col-lg-2 offset-lg-5">
+  <div class="col-lg-12 d-flex justify-content-center my-5">
     <h3>Filter Difficulty:</h3>
     <a href="{{ url_for('workouts1',username=username) }}"><i class="fas fa-star fa-2x filter" id="filter1"></i></a>
     <a href="{{ url_for('workouts2',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter2"></i></a>
@@ -118,7 +118,7 @@ loading="lazy"
     <a href="{{ url_for('workouts5',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter5"></i></a>
   </div>
 {% for workout in workouts %}
-<div class="col-lg-5 mx-5 my-3">
+<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12  my-3">
 <div class="card text-center workoutcard">
   <div class="card-header">{{workout.Title}}</div>
   <div class="card-body">
