@@ -103,6 +103,13 @@
     font-weight: 300;
     border-radius: 5%;
 }
+.share
+{
+    background-color: var(--black)!important;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    border-radius: 5%;
+}
 .goalbutton
 { 
     background-color: var(--black)!important;
@@ -119,6 +126,7 @@
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
 }
+
 .modal-header
 {
     font-family: 'Oswald', sans-serif;
@@ -143,4 +151,10 @@ select {
 .workoutcard
 {
     height: 400px;
+}
+.card-text
+{
+    font-family: 'Ubuntu', sans-serif!important;
+    font-weight: 300!important;
+    font-size: 20px;
 }

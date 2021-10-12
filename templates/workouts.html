@@ -122,10 +122,6 @@ loading="lazy"
 <div class="card text-center workoutcard">
   <div class="card-header">{{workout.Title}}</div>
   <div class="card-body">
-    <h5>{{workout.Date}}</h5>
-    <p class="card-text">
-     {{workout.Routine}}
-    </p>
     <div>
       {% if workout.Difficulty == "Five" %}
       <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -139,11 +135,20 @@ loading="lazy"
       <i class="fas fa-star"></i>
       {% endif %}
     </div>
-    <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary">Edit</a>
-    <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger">Delete</a>
+    <p class="card-text my-3">
+     {{workout.Routine}}
+    </p>
     {% if workout.Shared == False %}
-    <form action="{{ url_for('shareexisitingworkout', username=username, workout_id=workout._id) }}"  method="POST">
-      <button type="submit" class="btn btn-secondary">Share</button>
+    <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary edit my-3">Edit</a>
+    <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger delete my-3">Delete</a>
+    <form action="{{ url_for('shareexisitingworkout', username=username, workout_id=workout._id) }}"  method="POST" >
+      <button type="submit" class="btn btn-secondary share">Share</button>
+  </form>
+  {% else %}
+  <a href="{{ url_for('editworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary edit my-3">Edit</a>
+    <a href="{{ url_for('deleteworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger delete my-3">Delete</a>
+    <form action="#"  method="POST">
+      <button type="submit" class="btn btn-secondary share">Shared!</button>
   </form>
   {% endif %}
   </div>
