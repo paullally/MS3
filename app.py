@@ -105,7 +105,7 @@ def profilecompleted(username):
     return render_template("profile-completed.html", username=username ,files=file,goals=goal)
 
 @app.route("/profile-inprogress/<username>", methods=["GET", "POST"])
-def profileinprogess(username):
+def profileinprogress(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
     goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Incomplete"}))
     username = mongo.db.users.find_one(
@@ -127,8 +127,8 @@ def upload(username):
         mongo.save_file(profile_image.filename,profile_image)
         mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
         return redirect(url_for("profile", username=username))
-@app.route('/Upload-completed/<username>', methods=['POST'])
 
+@app.route('/Upload-completed/<username>', methods=['POST'])
 def uploadcompleted(username):
     profile_image = request.files['profile_image']
     username = mongo.db.users.find_one(
@@ -143,6 +143,23 @@ def uploadcompleted(username):
         mongo.save_file(profile_image.filename,profile_image)
         mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
         return redirect(url_for('profilecompleted', username=username,files=file))
+
+
+@app.route('/Upload-inprogress/<username>', methods=['POST'])
+def uploadinprogress(username):
+    profile_image = request.files['profile_image']
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    test = mongo.db.files.find_one({"id": session["user"]})
+    if not test:
+        mongo.save_file(profile_image.filename,profile_image)
+        mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
+        return redirect(url_for('profileinprogress', username=username,files=file))
+    else:
+        mongo.db.files.remove({"id": session["user"]})
+        mongo.save_file(profile_image.filename,profile_image)
+        mongo.db.files.insert({'id': session["user"],'profile_image_name':profile_image.filename})
+        return redirect(url_for('profileinprogress', username=username,files=file))
 
 
 @app.route('/file/<filename>')
@@ -370,6 +387,43 @@ def deletegoalcompleted(goal_id, username):
     mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
     return redirect(url_for('profilecompleted', username=username,files=file))
 
+
+
+@app.route('/edit-goalinprogress/<username>_<goal_id>')
+def editgoalinprogress(goal_id, username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Incomplete"}))
+    return render_template('update-profile-inprogress.html', username=username, edit=edit, goals=goal,files=file)
+    
+@app.route('/delete-goal-inprogress/<username>_<goal_id>')
+def deletegoalinprogress(goal_id, username):
+    mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
+    return redirect(url_for('profileinprogress', username=username,files=file))
+
+
+@app.route('/updated-inprogressgoal/<username>_<goal_id>', methods=['POST'])
+def updategoalinprogress(goal_id, username):
+    edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
+    if not request.form['Details']:
+        details = edit["Details"]
+    else:
+        details = request.form['Details']
+    updates = {
+             'user': session["user"],
+             "Date": edit['Date'],
+             'Title': request.form['Title'],
+             'Details': details,
+             'Completed': request.form['Completed']
+        }
+    mongo.db.Goals.update({"_id": ObjectId(goal_id)}, updates)
+    return redirect(url_for('profileinprogress', username=username,files=file))
+
+
+
+
+
+
 @app.route('/edit-profilepicture/<username>')
 def editprofilepicture(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
@@ -381,6 +435,12 @@ def editprofilepicturecompleted(username):
     file = list(mongo.db.files.find({"id": session["user"]}))
     goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Complete"}))
     return render_template('update-profilepicture-completed.html', username=username,goals=goal,files=file)
+
+@app.route('/edit-profilepicture-inprogress/<username>')
+def editprofilepictureinprogress(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    goal = list(mongo.db.Goals.find({"user": session["user"],"Completed":"Incomplete"}))
+    return render_template('update-profilepicture-inprogress.html', username=username,goals=goal,files=file)
 
 @app.route("/search-workouts", methods=["GET", "POST"])
 def search():

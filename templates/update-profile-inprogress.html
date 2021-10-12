@@ -51,22 +51,22 @@
       {% endif %}
     </div>
     <div class="col-lg-12 mx-5">
-      <h1><a href="{{url_for('editprofilepicture', username=username)}}"><i class="fas fa-camera"></i></a></h1>
+      <h1><a href="{{url_for('editprofilepictureinprogress', username=username)}}"><i class="fas fa-camera"></i></a></h1>
     </div>
     <div class="col-lg-12">
       <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active mininav" id="home-tab" data-toggle="tab" href="{{ url_for('profile',username=username) }}" role="tab" aria-controls="home" aria-selected="true">All Goals</a>
+          <a class="nav-link  mininav" id="home-tab" data-toggle="tab" href="{{ url_for('profile',username=username) }}" role="tab" aria-controls="home" aria-selected="true">All Goals</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mininav" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab" aria-controls="profile" aria-selected="false">Completed</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link mininav" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogress',username=username) }}" role="tab" aria-controls="contact" aria-selected="false">In Progress</a>
+          <a class="nav-link active mininav" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogress',username=username) }}" role="tab" aria-controls="contact" aria-selected="false">In Progress</a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <button type="button" class="btn btn-primary mx-3 goalbutton" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+        <button type="button" class="btn btn-primary mx-3 goalbutton"  data-mdb-toggle="modal" data-mdb-target="#exampleModal">
           Add Goal
         </button>
         {% for goal in goals %}
@@ -81,8 +81,8 @@
               </blockquote>
             </div>
             <div class="col-lg-12 d-flex justify-content-center ">
-              <a href="{{ url_for('editgoal', username=username, goal_id=goal._id) }}" class="btn btn-primary mx-3 my-3 edit">Edit</a>
-              <a href="{{ url_for('deletegoal', username=username, goal_id=goal._id) }}" class="btn btn-danger my-3 delete">Delete</a>
+              <a href="{{ url_for('editgoalinprogress', username=username, goal_id=goal._id) }}" class="btn btn-primary mx-3 my-3 edit">Edit</a>
+              <a href="{{ url_for('deletegoalinprogress', username=username, goal_id=goal._id) }}" class="btn btn-danger my-3 delete">Delete</a>
             </div>
           </div>
         </div>
@@ -120,6 +120,7 @@
       </footer>
     </div>
   </div>
+  
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -152,38 +153,6 @@
 
   </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Goal</h5>
-        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form class="new_patient" method="POST" action="{{url_for('addgoal',username=username)}}">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <h5 class="small-heading">Goal Title</h5>
-                <input type="text" name="Title" class="form-control mb-4" required>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <h5 class="small-heading">Goal Details</h5>
-                <div class="form-outline">
-                  <textarea class="form-control" name="Details" rows="4"></textarea>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between mt-3">
-                <button type="submit" class="btn btn-primary btn-rounded edit">Save</button>
-              </div>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -192,7 +161,7 @@
         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="new_patient" method="POST" action="{{ url_for('updategoal', username=username, goal_id=edit._id) }}">
+        <form class="new_patient" method="POST" action="{{ url_for('updategoalinprogress', username=username, goal_id=edit._id) }}">
           <div class="form-group">
             <div class="row">
               <div class="col-sm-12 col-md-12 col-lg-12">
@@ -214,7 +183,7 @@
                 </select>
               </div>
               <div class="d-flex justify-content-between mt-3">
-                <button type="submit" class="btn btn-primary edit">Save</button>
+                <button type="submit" class="btn btn-primary btn-rounded edit">Save</button>
               </div>
             </div>
         </form>
@@ -222,5 +191,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}
