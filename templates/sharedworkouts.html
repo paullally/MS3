@@ -97,16 +97,10 @@ loading="lazy"
 <div class="row ">
   <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-        aria-selected="true">All Workouts</a>
+      <a class="nav-link mininav" id="home-tab" data-toggle="tab" href="{{ url_for('profile',username=username) }}" role="tab" aria-controls="home" aria-selected="true">All Workouts</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="{{ url_for('savedsharedworkouts',username=username) }}" role="tab" aria-controls="profile"
-        aria-selected="false">Saved Workouts</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogess',username=username) }}" role="tab" aria-controls="contact"
-        aria-selected="false">In Progress</a>
+      <a class="nav-link active mininav" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab" aria-controls="profile" aria-selected="false">Saved Workouts</a>
     </li>
   </ul>
   {% for workout in workouts %}

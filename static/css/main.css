@@ -140,3 +140,7 @@ select {
     font-family: 'Ubuntu', sans-serif!important;
     font-weight: 300!important;
 }
+.workoutcard
+{
+    height: 400px;
+}
