@@ -107,7 +107,7 @@ loading="lazy"
   {% for workout in workouts %}
   {% if username in workout.Savedby %}
   <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 my-3">
-  <div class="card text-center">
+  <div class="card workoutcard text-center">
     <div class="card-header">{{workout.Title}}</div>
     <div class="card-body">
       <h5>Created by: {{workout.user}}</h5>
