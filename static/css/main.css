@@ -62,11 +62,7 @@
 {
     color: var(--orange)
 }
-.filter
-{
-    color: grey;
-    opacity: 0.9;
-}
+
 .nav-link
 {
     color: white

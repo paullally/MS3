@@ -109,14 +109,6 @@ loading="lazy"
     </form>
   
   </div>
-  <div class="col-lg-12 d-flex justify-content-center my-5">
-    <h3>Filter Difficulty:</h3>
-    <a href="{{ url_for('workouts1',username=username) }}"><i class="fas fa-star fa-2x filter" id="filter1"></i></a>
-    <a href="{{ url_for('workouts2',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter2"></i></a>
-    <a href="{{ url_for('workouts3',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter3"></i></a>
-    <a href="{{ url_for('workouts4',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter4"></i></a>
-    <a href="{{ url_for('workouts5',username=username) }}"><i class="fas fa-star fa-2x filter"  id="filter5"></i></a>
-  </div>
 {% for workout in workouts %}
 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12  my-3">
 <div class="card text-center workoutcard">
