@@ -101,7 +101,7 @@ loading="lazy"
       <a class="nav-link active mininav" id="home-tab" data-toggle="tab" href="{{url_for('sharedworkouts',username=username)}}" role="tab" aria-controls="home" aria-selected="true">All Workouts</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link  mininav" id="profile-tab" data-toggle="tab" href="{{ url_for('savedsharedworkouts',username=username) }}" role="tab" aria-controls="profile" aria-selected="false">Saved Workouts</a>
+      <a class="nav-link  mininav " id="profile-tab" data-toggle="tab" href="{{ url_for('savedsharedworkouts',username=username) }}" role="tab" aria-controls="profile" aria-selected="false">Saved Workouts</a>
     </li>
   </ul>
   {% for workout in workouts %}
@@ -115,41 +115,34 @@ loading="lazy"
       <img
       src="{{url_for('file', filename=file.profile_image_name)}}"
       class="rounded-circle"
-      height="25"
+      height="50"
+      width="50"
       alt=""
       loading="lazy"
     />
     {% endif %}
     {% endfor %}
+    <div>
+      {% if workout.Difficulty == "Five" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% elif workout.Difficulty == "Four" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% elif workout.Difficulty == "Three" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% elif workout.Difficulty == "Two" %}
+      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+      {% else %}
+      <i class="fas fa-star"></i>
+      {% endif %}
+    </div>
       <p class="card-text">
        {{workout.Routine}}
       </p>
-      <div>
-        {% if workout.Difficulty == "Five" %}
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        {% elif workout.Difficulty == "Four" %}
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        {% elif workout.Difficulty == "Three" %}
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        {% elif workout.Difficulty == "Two" %}
-        <i class="fas fa-star"></i><i class="fas fa-star"></i>
-        {% else %}
-        <i class="fas fa-star"></i>
-        {% endif %}
-      </div>
-      {% if username == workout.user %}
-      <a href="{{ url_for('editSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary edit">Edit</a>
-      <a href="{{ url_for('deleteSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger delete">Delete</a>
-      {% elif username in workout.Savedby %}
-      <a href="#" class="btn btn-danger shared">Saved!</a>
-      {% else %}
-      <a href="{{ url_for('saveSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger shared">Save</a>
-      {% endif %}
      
-      
     </div>
   </div>
   </div>
+
   {% endfor %}
   </div>
 <button
