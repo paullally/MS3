@@ -93,7 +93,7 @@ loading="lazy"
   </div>
   <!-- Container wrapper -->
 </nav>
-<div class="row">
+<div class="row wrapper">
   <div class="col-lg-12 d-flex justify-content-center my-5">
     <h3>Search for Workout:</h3>
     <form class="form-inline" action="{{ url_for('search') }}" method="POST">
@@ -110,7 +110,7 @@ loading="lazy"
   
   </div>
 {% for workout in workouts %}
-<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12  my-3">
+<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 my-3">
 <div class="card text-center workoutcard">
   <div class="card-header">{{workout.Title}}</div>
   <div class="card-body">
@@ -254,4 +254,5 @@ loading="lazy"
   </div>
 </div>
 </div>
+
 {% endblock %}

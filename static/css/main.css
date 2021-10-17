@@ -173,3 +173,12 @@ h3
     letter-spacing: 1px;
 
 }
+.wrapper
+{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.card-body
+{
+    overflow-y: scroll;
+}
