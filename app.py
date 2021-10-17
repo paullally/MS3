@@ -22,6 +22,10 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
+    return render_template('home.html')
+
+@app.route("/loginpage")
+def loginpage():
     return render_template('login.html')
 
 @app.route("/new-user")

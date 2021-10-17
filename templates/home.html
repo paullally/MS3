@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content%}
+<div class="main-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">All Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Projects</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center">
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+          {% if files|length %}
+          {% for file in files %}
+          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          {% endfor %}
+          {% else %}
+          <img src="https://via.placeholder.com/150" class="rounded-circle" height="25" alt="" loading="lazy" />
+          {% endif %}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="wrapper">
+      <div class="row">
+        <div class="col-lg-12 my-5">
+            <h1 class="text-center">Welcome to Keeping-Fit</h1>
+          </div>
+      </div>
+     <div class="row">
+        <div class="col-lg-3 my-5 offset-lg-3 col-md-6  order-sm-2  order-xs-2 my-5 ">
+            <h3 class="mt-5 mb-3">What is Keeping-Fit?</h3>
+            <p>Keeping-Fit is a website made for people to keep track of workouts, Share there favourite workouts and to also keep track of the goals they want to achieve</p>
+           </div>
+           <div class="col-lg-4 col-md-6  order-sm-1 order-xs-1 my-5 ">
+             <img src="../static/images/undraw_fitness_tracker_3033.png" class="img-fluid">
+           </div>
+     </div>
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center my-5">
+                <i class="fas fa-dumbbell fa-3x"></i>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 my-5 offset-lg-3 col-md-6  order-lg-1">
+                <img src="../static/images/undraw_fitness_stats_sht6.png" class="img-fluid">
+               </div>
+               <div class="col-lg-3 my-5 col-md-6 order-lg-2">
+                <h3 class="mt-5 mb-3">Share with others!</h3>
+               <p>You can create your own personal workouts and have the choice to share it with others. You can also save workouts that others have made. </p>
+               </div>
+        </div>
+      <div class="row">
+        <div class="col-lg-12 d-flex justify-content-center my-5">
+            <i class="fas fa-dumbbell fa-3x"></i>
+          </div>
+      </div>
+       <div class="row">
+        <div class="col-lg-3 my-5 offset-lg-3 col-md-6 order-lg-1">
+            <h3 class="mt-5 mb-3">How do i start?</h3>
+            <p>Its Simple! All you have to do is Signup and Log in to get access to all the Keeping-Fit functionality! <br><br> You can Sign up <a href="{{ url_for('newuser') }}">here!</a> <br><br>Already have an account? log in <a href="{{ url_for('loginpage') }}">here</a></p>
+           </div>
+           <div class="col-lg-4 my-5 col-md-6 order-lg-2">
+             <img src="../static/images/undraw_Questions_re_1fy7.png" class="img-fluid">
+           </div>
+       </div>
+      
+  </div>
+ 
+  <div class="row">
+    <div class="col-lg-12">
+      <br><br>
+      <footer class="bg-light text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+            <!-- Twitter -->
+            <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+            <!-- Google -->
+            <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+            <!-- Instagram -->
+            <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+            <!-- Linkedin -->
+            <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+            <!-- Github -->
+            <a class="btn btn-primary btn-floating m-1" style="background-color: #333333;" href="#!" role="button"><i class="fab fa-github"></i></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <div class="text-center p-3" style="background-color: var(--green);">
+          © 2020 Copyright:
+          <a class="text-white">KeepingFit</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+  
+</div>
+{% endblock %}
