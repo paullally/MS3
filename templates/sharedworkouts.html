@@ -138,8 +138,16 @@ loading="lazy"
       <p class="card-text">
        {{workout.Routine}}
       </p>
-     
+      {% if username == workout.user %}
+      <a href="{{ url_for('editSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-primary edit">Edit</a>
+      <a href="{{ url_for('deleteSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger delete">Delete</a>
+      {% elif username in workout.Savedby %}
+      <a href="#" class="btn btn-danger shared">Saved!</a>
+      {% else %}
+      <a href="{{ url_for('saveSharedworkout', username=username, workout_id=workout._id) }}" class="btn btn-danger shared">Save</a>
+      {% endif %}
     </div>
+    
   </div>
   </div>
 

@@ -266,14 +266,25 @@ def deleteSharedworkout(workout_id, username):
 def editSharedworkout(workout_id, username):
     file = list(mongo.db.files.find({"id": session["user"]}))
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
-    workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
-    return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
+    sharedworkout = list(mongo.db.Sharedworkouts.find())
+    return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=sharedworkout,files=file)
 
 @app.route('/update-Sharedworkout/<username>_<workout_id>')
 def updateSharedworkout(workout_id, username):
-    file = list(mongo.db.files.find({"id": session["user"]}))
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
-    workout = list(mongo.db.Sharedworkouts.find({"user": session["user"]}))
+    if not request.form['Details']:
+        details = edit["Details"]
+    else:
+        details = request.form['Details']
+    updates = {
+             'user': session["user"],
+             'Date': edit['Date'],
+             'Title': request.form['Title'],
+             'Routine': request.form['Routine'],
+             'Difficulty': request.form['Difficulty'],
+             'Savedby':  edit['Savedby']
+        }
+    mongo.db.Sharedworkouts.update({"_id": ObjectId(workout_id)}, updates)
     return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
 
 @app.route('/save-Sharedworkout/<username>_<workout_id>')
@@ -458,6 +469,10 @@ def search():
     file = list(mongo.db.files.find({"id": session["user"]}))
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
     return render_template("workouts.html", username=username,files=file, workouts=workout)
+
+
+
+
 
 
 
