@@ -269,23 +269,23 @@ def editSharedworkout(workout_id, username):
     sharedworkout = list(mongo.db.Sharedworkouts.find())
     return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=sharedworkout,files=file)
 
-@app.route('/update-Sharedworkout/<username>_<workout_id>')
+@app.route('/update-Sharedworkout/<username>_<workout_id>',methods=['GET','POST'])
 def updateSharedworkout(workout_id, username):
     edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
-    if not request.form['Details']:
-        details = edit["Details"]
+    if not request.form['Routine']:
+        Routine = edit["Routine"]
     else:
-        details = request.form['Details']
+        Routine = request.form['Routine']
     updates = {
              'user': session["user"],
              'Date': edit['Date'],
              'Title': request.form['Title'],
-             'Routine': request.form['Routine'],
+             'Routine': Routine,
              'Difficulty': request.form['Difficulty'],
              'Savedby':  edit['Savedby']
         }
     mongo.db.Sharedworkouts.update({"_id": ObjectId(workout_id)}, updates)
-    return render_template('update-Sharedworkout.html', username=username, edit=edit, workouts=workout,files=file)
+    return redirect(url_for('sharedworkouts', username=username))
 
 @app.route('/save-Sharedworkout/<username>_<workout_id>')
 def saveSharedworkout(workout_id, username):
