@@ -9,10 +9,32 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('loginpage') }}">Log in</a>
+            <a class="nav-link" href="{{url_for('homeloggedin',username=username)}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('newuser') }}">Sign Up</a>
+            <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">All Workouts</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center">
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+          {% if files|length %}
+          {% for file in files %}
+          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          {% endfor %}
+          {% else %}
+          <img src="https://via.placeholder.com/150" class="rounded-circle" height="25" alt="" loading="lazy" />
+          {% endif %}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
           </li>
         </ul>
       </div>
@@ -55,7 +77,7 @@
        <div class="row">
         <div class="col-lg-3 my-5 offset-lg-3 col-md-6 col-sm-6">
             <h3 class="mt-5 mb-3">How do i start?</h3>
-            <p>Its Simple! All you have to do is Signup and Log in to get access to all the Keeping-Fit functionality! <br><br> You can Sign up <a href="{{ url_for('newuser') }}">here!</a> <br><br>Already have an account? log in <a href="{{ url_for('loginpage') }}">here</a></p>
+            <p>Its Simple! All you have to do is Signup and Log in to get access to all the Keeping-Fit functionality! </p>
            </div>
            <div class="col-lg-4 my-5 col-md-6 col-sm-6">
              <img src="../static/images/undraw_Questions_re_1fy7.png" class="img-fluid">

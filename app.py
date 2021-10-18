@@ -91,6 +91,11 @@ def login():
 
      return render_template("login.html")
 
+@app.route("/home/<username>")
+def homeloggedin(username):
+    file = list(mongo.db.files.find({"id": session["user"]}))
+    return render_template('homeloggedin.html',username=username ,files=file)
+
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):

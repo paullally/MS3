@@ -1,98 +1,45 @@
 {% extends "base.html" %}
 {% block content%}
 <div class="main-container">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <img
-          src=""
-          height="15"
-          alt=""
-          loading="lazy"
-        />
-      </a>
-      <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">All Workouts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
-      </ul>
-      <!-- Left links -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('homeloggedin',username=username)}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('workouts',username=username)}}">My Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('sharedworkouts',username=username)}}">All Workouts</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center">
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+          {% if files|length %}
+          {% for file in files %}
+          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          {% endfor %}
+          {% else %}
+          <img src="https://via.placeholder.com/150" class="rounded-circle" height="25" alt="" loading="lazy" />
+          {% endif %}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <!-- Collapsible wrapper -->
-
-    <!-- Right elements -->
-    <div class="d-flex align-items-center">
-      <!-- Avatar -->
-      <a
-        class="dropdown-toggle d-flex align-items-center hidden-arrow"
-        href="#"
-        id="navbarDropdownMenuLink"
-        role="button"
-        data-mdb-toggle="dropdown"
-        aria-expanded="false"
-      >
-      {% if files|length %}
-      {% for file in files %}
-      <img
-        src="{{url_for('file', filename=file.profile_image_name)}}"
-        class="rounded-circle"
-        height="25"
-        alt=""
-        loading="lazy"
-      />
-      {% endfor %}
-    
-{% else %}
-<img
-src="https://via.placeholder.com/150"
-class="rounded-circle"
-height="25"
-alt=""
-loading="lazy"
-/>
-{% endif %}
-     
-      </a>
-      <ul
-        class="dropdown-menu dropdown-menu-end"
-        aria-labelledby="navbarDropdownMenuLink"
-      >
-        <li>
-          <a class="dropdown-item" href="{{ url_for('profile',username=username) }}">My profile</a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-      </ul>
-    </div>
-    <!-- Right elements -->
-  </div>
-  <!-- Container wrapper -->
-</nav>
+  </nav>
 <div class="row wrapper">
   <div class="col-lg-12 d-flex justify-content-center my-5">
     <h3>Search for Workout:</h3>
