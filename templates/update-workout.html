@@ -24,7 +24,7 @@
           {% if files|length %}
           {% for file in files %}
           {%if file.id==username%}
-          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
           {% endif %}
           {% endfor %}
           {% else %}
@@ -45,7 +45,7 @@
   <div class="row wrapper">
     <div class="col-lg-12 d-flex justify-content-center my-5">
       <h3>Search for Workout:</h3>
-      <form class="form-inline" action="{{ url_for('search') }}" method="POST">
+      <form class="form-inline" action="{{ url_for('search',username=username) }}" method="POST">
         <div class="input-group">
           <div class="form-outline">
             <input id="search-input" type="search" name="query" id="query" class="form-control" />

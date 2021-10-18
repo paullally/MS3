@@ -24,7 +24,7 @@
           {% if files|length %}
           {% for file in files %}
           {%if file.id==username%}
-          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
           {% endif %}
           {% endfor %}
           {% else %}
@@ -46,7 +46,7 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       {% if files|length %}
       {% for file in files %}
-      <img src="{{url_for('file', filename=file.profile_image_name)}}" height="200" width="200" class="rounded-circle my-5">
+      <img src="{{url_for('filed', filename=file.profile_image_name)}}" height="200" width="200" class="rounded-circle my-5">
       {% endfor %}
       {% else %}
       <img src="https://via.placeholder.com/150" height="200" width="200" class="rounded-circle my-5">
@@ -121,7 +121,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 <div class="row">
@@ -145,7 +144,6 @@
     </footer>
   </div>
 </div>
-<!-- Modal -->
 <div class="modal fade" id="taticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -203,5 +201,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}

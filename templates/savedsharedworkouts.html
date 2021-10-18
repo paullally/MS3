@@ -24,7 +24,7 @@
           {% if files|length %}
           {% for file in files %}
           {%if file.id==username%}
-          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
           {% endif %}
           {% endfor %}
           {% else %}
@@ -60,7 +60,7 @@
           <h5>Created by: {{workout.user}}</h5>
           {% for file in files %}
           {% if file.id==workout.user %}
-          <img src="{{url_for('file', filename=file.profile_image_name)}}" class="rounded-circle" height="50" width="50" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="50" width="50" alt="" loading="lazy" />
           {% endif %}
           {% endfor %}
           <div>
@@ -89,8 +89,6 @@
   <button type="button" class="btn btn-primary goalbutton" data-mdb-toggle="modal" data-mdb-target="#taticBackdrop">
     New Workout
   </button>
-
-
   <div class="row">
     <div class="col-lg-12">
       <br><br>
@@ -112,11 +110,6 @@
       </footer>
     </div>
   </div>
-
-
-
-
-  <!-- Modal -->
   <div class="modal fade" id="taticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
