@@ -22,21 +22,26 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
+    # renders home page default link
     return render_template('home.html')
 
 
 @app.route("/loginpage")
 def loginpage():
+    # renders log in page
     return render_template('login.html')
 
 
 @app.route("/new-user")
 def newuser():
+    # displays register page
     return render_template('register.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """ allows users to register checks if user exists and
+    passwords match before registering """
     if request.method == "POST":
         password = request.form.get("password")
         check = request.form.get("password2")
@@ -71,6 +76,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # allows users to log in
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
@@ -94,6 +100,7 @@ def login():
 
 @app.route("/home/<username>")
 def homeloggedin(username):
+    # displays home page for logged in users
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         return render_template('homeloggedin.html', username=username,
@@ -104,6 +111,7 @@ def homeloggedin(username):
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    # displays profile page
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         goal = list(mongo.db.Goals.find({"user": session["user"]}))
@@ -115,6 +123,7 @@ def profile(username):
 
 @app.route("/profile-completed/<username>", methods=["GET", "POST"])
 def profilecompleted(username):
+    # displays profile page with compelted goals
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         goal = list(mongo.db.Goals.find({"user": session["user"],
@@ -129,6 +138,7 @@ def profilecompleted(username):
 
 @app.route("/profile-inprogress/<username>", methods=["GET", "POST"])
 def profileinprogress(username):
+    # displays the goal page which goals are in progress
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         goal = list(mongo.db.Goals.find({"user": session["user"],
@@ -143,6 +153,7 @@ def profileinprogress(username):
 
 @app.route('/Upload/<username>', methods=['POST'])
 def upload(username):
+    # upload profile picture on main profile page
     if username == session["user"]:
         profile_image = request.files['profile_image']
         username = mongo.db.users.find_one(
@@ -167,6 +178,7 @@ def upload(username):
 
 @app.route('/Upload-completed/<username>', methods=['POST'])
 def uploadcompleted(username):
+    # upload a profile picture on the goal complete page
     if username == session["user"]:
         profile_image = request.files['profile_image']
         test = mongo.db.files.find_one({"id": session["user"]})
@@ -189,6 +201,7 @@ def uploadcompleted(username):
 
 @app.route('/Upload-inprogress/<username>', methods=['POST'])
 def uploadinprogress(username):
+    # upload a profile picture on the goal in progress page
     if username == session["user"]:
         profile_image = request.files['profile_image']
         test = mongo.db.files.find_one({"id": session["user"]})
@@ -211,17 +224,20 @@ def uploadinprogress(username):
 
 @app.route('/file/<filename>')
 def filed(filename):
+    # retrieves files for profile picture
     return mongo.send_file(filename)
 
 
 @app.route("/logout")
 def logout():
+    # function that logs user out
     session.pop("user")
     return redirect(url_for("login"))
 
 
 @app.route("/MyWorkouts/<username>", methods=["GET", "POST"])
 def workouts(username):
+    # displays workout page
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         workout = list(mongo.db.Workouts.find({"user": session["user"]}))
@@ -233,6 +249,7 @@ def workouts(username):
 
 @app.route("/Add-Workouts/<username>", methods=["GET", "POST"])
 def addworkout(username):
+    # allows user to add workout
     if username == session["user"]:
         if request.method == 'POST':
             mongo.db.Workouts.insert_one(
@@ -251,6 +268,7 @@ def addworkout(username):
 
 @app.route('/delete-workout/<username>_<workout_id>')
 def deleteworkout(workout_id, username):
+    # allows user to delete a workout
     if username == session["user"]:
         mongo.db.Workouts.remove({'_id': ObjectId(workout_id)})
         return redirect(url_for('workouts', username=username))
@@ -260,6 +278,7 @@ def deleteworkout(workout_id, username):
 
 @app.route('/edit-workout/<username>_<workout_id>')
 def editworkout(workout_id, username):
+    # allows user to edit a workout
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
@@ -272,6 +291,7 @@ def editworkout(workout_id, username):
 
 @app.route('/updated-workout/<username>_<workout_id>', methods=['POST'])
 def updateworkout(workout_id, username):
+    # updates workout with new data
     if username == session["user"]:
         edit = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
         updates = {
@@ -289,6 +309,7 @@ def updateworkout(workout_id, username):
 
 @app.route("/SharedWorkouts/<username>", methods=["GET", "POST"])
 def sharedworkouts(username):
+    # displays the shared workouts page
     if username == session["user"]:
         file = list(mongo.db.files.find())
         sharedworkout = list(mongo.db.Sharedworkouts.find())
@@ -300,6 +321,7 @@ def sharedworkouts(username):
 
 @app.route("/Saved-SharedWorkouts/<username>", methods=["GET", "POST"])
 def savedsharedworkouts(username):
+    # displays the saved shared workouts page
     if username == session["user"]:
         file = list(mongo.db.files.find())
         sharedworkout = list(mongo.db.Sharedworkouts.find())
@@ -311,6 +333,7 @@ def savedsharedworkouts(username):
 
 @app.route("/Add-SharedWorkouts/<username>", methods=["GET", "POST"])
 def addsharedworkout(username):
+    # function that allows user to create a shared workout
     if username == session["user"]:
         if request.method == 'POST':
             saved = []
@@ -330,6 +353,8 @@ def addsharedworkout(username):
 
 @app.route('/delete-Sharedworkout/<username>_<workout_id>')
 def deleteSharedworkout(workout_id, username):
+    """ function to delete a shared workout
+    only works for workouts created by user """
     if username == session["user"]:
         mongo.db.Sharedworkouts.remove({'_id': ObjectId(workout_id)})
         return redirect(url_for('sharedworkouts', username=username))
@@ -339,6 +364,8 @@ def deleteSharedworkout(workout_id, username):
 
 @app.route('/edit-Sharedworkout/<username>_<workout_id>')
 def editSharedworkout(workout_id, username):
+    """ function that allows user to edit a shared workout this
+    will only work on the workouts the user has created """
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
@@ -352,6 +379,7 @@ def editSharedworkout(workout_id, username):
 @app.route('/update-Sharedworkout/<username>_<workout_id>',
            methods=['GET', 'POST'])
 def updateSharedworkout(workout_id, username):
+    # function that updates a shared workout with new information
     if username == session["user"]:
         edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
         if not request.form['Routine']:
@@ -374,6 +402,7 @@ def updateSharedworkout(workout_id, username):
 
 @app.route('/save-Sharedworkout/<username>_<workout_id>')
 def saveSharedworkout(workout_id, username):
+    # allows user to save a shared workout
     if username == session["user"]:
         edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
         saved = edit['Savedby']
@@ -399,6 +428,7 @@ def saveSharedworkout(workout_id, username):
 @app.route('/Shareexistingworkout/<username>_<workout_id>',
            methods=['GET', 'POST'])
 def shareexisitingworkout(workout_id, username):
+    # allows user to share a workout from workouts page to shared workouts page
     if username == session["user"]:
         share = mongo.db.Workouts.find_one({'_id': ObjectId(workout_id)})
         saved = []
@@ -421,6 +451,7 @@ def shareexisitingworkout(workout_id, username):
 
 @app.route("/Add-Goal/<username>", methods=["GET", "POST"])
 def addgoal(username):
+    # allows user to create a new goal
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         if request.method == 'POST':
@@ -439,6 +470,7 @@ def addgoal(username):
 
 @app.route('/edit-goal/<username>_<goal_id>')
 def editgoal(goal_id, username):
+    # function that allows users to edit goals on main profile page
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
@@ -451,6 +483,7 @@ def editgoal(goal_id, username):
 
 @app.route('/updated-goal/<username>_<goal_id>', methods=['POST'])
 def updategoal(goal_id, username):
+    # function that updates a goal on the main profile page
     if username == session["user"]:
         edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
         if not request.form['Details']:
@@ -472,6 +505,7 @@ def updategoal(goal_id, username):
 
 @app.route('/edit-goalcompleted/<username>_<goal_id>')
 def editgoalcompleted(goal_id, username):
+    # function that allows user to edit goal on completed page
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
@@ -486,6 +520,7 @@ def editgoalcompleted(goal_id, username):
 
 @app.route('/delete-goal/<username>_<goal_id>')
 def deletegoal(goal_id, username):
+    # function to delete goal on main profile page
     if username == session["user"]:
         mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
         return redirect(url_for('profile', username=username))
@@ -495,6 +530,7 @@ def deletegoal(goal_id, username):
 
 @app.route('/updated-completedgoal/<username>_<goal_id>', methods=['POST'])
 def updategoalcompleted(goal_id, username):
+    # function to update data for a completed goal
     if username == session["user"]:
         edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
         if not request.form['Details']:
@@ -516,6 +552,7 @@ def updategoalcompleted(goal_id, username):
 
 @app.route('/delete-goalcompleted/<username>_<goal_id>')
 def deletegoalcompleted(goal_id, username):
+    # function to delete a goal on the completed page
     if username == session["user"]:
         mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
         return redirect(url_for('profilecompleted', username=username))
@@ -525,6 +562,7 @@ def deletegoalcompleted(goal_id, username):
 
 @app.route('/edit-goalinprogress/<username>_<goal_id>')
 def editgoalinprogress(goal_id, username):
+    # function to allow user to edit a goal in progress
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
@@ -539,6 +577,7 @@ def editgoalinprogress(goal_id, username):
 
 @app.route('/delete-goal-inprogress/<username>_<goal_id>')
 def deletegoalinprogress(goal_id, username):
+    # function to delete a goal from the inprogress page
     if username == session["user"]:
         mongo.db.Goals.remove({'_id': ObjectId(goal_id)})
         return redirect(url_for('profileinprogress', username=username))
@@ -548,6 +587,7 @@ def deletegoalinprogress(goal_id, username):
 
 @app.route('/updated-inprogressgoal/<username>_<goal_id>', methods=['POST'])
 def updategoalinprogress(goal_id, username):
+    # this is an function that updates the goal from the inprogress page
     if username == session["user"]:
         edit = mongo.db.Goals.find_one({'_id': ObjectId(goal_id)})
         if not request.form['Details']:
@@ -569,6 +609,7 @@ def updategoalinprogress(goal_id, username):
 
 @app.route('/edit-profilepicture/<username>')
 def editprofilepicture(username):
+    # this function allows user to edit profile picture on main profile page
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         goal = list(mongo.db.Goals.find({"user": session["user"]}))
@@ -580,6 +621,8 @@ def editprofilepicture(username):
 
 @app.route('/edit-profilepicture-completed/<username>')
 def editprofilepicturecompleted(username):
+    """ this function allows user to edit profile picture
+    while on the complete goals page """
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         goal = list(mongo.db.Goals.find({"user": session["user"],
@@ -592,6 +635,8 @@ def editprofilepicturecompleted(username):
 
 @app.route('/edit-profilepicture-inprogress/<username>')
 def editprofilepictureinprogress(username):
+    """ this function allows user to edit profile picture
+    while on the inprogress goals page """
     if username == session["user"]:
         file = list(mongo.db.files.find({"id": session["user"]}))
         goal = list(mongo.db.Goals.find({"user": session["user"],
@@ -602,14 +647,43 @@ def editprofilepictureinprogress(username):
     return redirect(url_for("login"))
 
 
-@app.route("/search-workouts", methods=["GET", "POST"])
+@app.route("/search-workouts/<username>", methods=["GET", "POST"])
 def search(username):
+    # function for search bar on workout page
     if username == session["user"]:
         query = request.form.get("query")
         workout = list(mongo.db.Workouts.find({"$text": {"$search": query}}))
         file = list(mongo.db.files.find({"id": session["user"]}))
         return render_template("workouts.html", username=username,
                                files=file, workouts=workout)
+    flash("You need to log in")
+    return redirect(url_for("login"))
+
+
+@app.route("/search-sharedworkouts/<username>", methods=["GET", "POST"])
+def sharedsearch(username):
+    # function for search bar on workout page
+    if username == session["user"]:
+        query = request.form.get("query")
+        sharedworkout = list(mongo.db.Sharedworkouts.find({"$text":
+                             {"$search": query}}))
+        file = list(mongo.db.files.find({"id": session["user"]}))
+        return render_template("sharedworkouts.html", username=username,
+                               files=file, workouts=sharedworkout)
+    flash("You need to log in")
+    return redirect(url_for("login"))
+
+
+@app.route("/search-savedsharedworkouts/<username>", methods=["GET", "POST"])
+def savedsearch(username):
+    # function for search bar on workout page
+    if username == session["user"]:
+        query = request.form.get("query")
+        sharedworkout = list(mongo.db.Sharedworkouts.find({"$text":
+                             {"$search": query}}))
+        file = list(mongo.db.files.find())
+        return render_template("savedsharedworkouts.html", username=username,
+                               files=file, workouts=sharedworkout)
     flash("You need to log in")
     return redirect(url_for("login"))
 

@@ -51,6 +51,20 @@
         <a class="nav-link  mininav " id="profile-tab" data-toggle="tab" href="{{ url_for('savedsharedworkouts',username=username) }}" role="tab" aria-controls="profile" aria-selected="false">Saved Workouts</a>
       </li>
     </ul>
+    <div class="col-lg-12 d-flex justify-content-center my-5">
+      <h3>Search for Workout:</h3>
+      <form class="form-inline" action="{{ url_for('sharedsearch',username=username) }}" method="POST">
+        <div class="input-group">
+          <div class="form-outline">
+            <input id="search-input" type="search" name="query" id="query" class="form-control" />
+            <label class="form-label" for="form1">Workout Title</label>
+          </div>
+          <button id="search-button" type="submit" class="btn btn-primary search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
     {% for workout in workouts %}
     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 my-3">
       <div class="card text-center workoutcard">
