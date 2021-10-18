@@ -21,8 +21,8 @@
       </div>
       <div class="d-flex align-items-center">
         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-          {% if files|length %}
-          {% for file in files %}
+          {% if profile|length %}
+          {% for file in profiles %}
           {%if file.id==username%}
           <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
           {% endif %}

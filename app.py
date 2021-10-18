@@ -312,9 +312,11 @@ def sharedworkouts(username):
     # displays the shared workouts page
     if username == session["user"]:
         file = list(mongo.db.files.find())
+        profile = list(mongo.db.files.find({"id": session["user"]}))
         sharedworkout = list(mongo.db.Sharedworkouts.find())
         return render_template("sharedworkouts.html", username=username,
-                               files=file, workouts=sharedworkout)
+                               files=file, workouts=sharedworkout,
+                               profiles=profile)
     flash("You need to log in")
     return redirect(url_for("login"))
 
@@ -324,9 +326,11 @@ def savedsharedworkouts(username):
     # displays the saved shared workouts page
     if username == session["user"]:
         file = list(mongo.db.files.find())
+        profile = list(mongo.db.files.find({"id": session["user"]}))
         sharedworkout = list(mongo.db.Sharedworkouts.find())
         return render_template("savedsharedworkouts.html", username=username,
-                               files=file, workouts=sharedworkout)
+                               files=file, workouts=sharedworkout,
+                               profile=profile)
     flash("You need to log in")
     return redirect(url_for("login"))
 
@@ -367,11 +371,13 @@ def editSharedworkout(workout_id, username):
     """ function that allows user to edit a shared workout this
     will only work on the workouts the user has created """
     if username == session["user"]:
-        file = list(mongo.db.files.find({"id": session["user"]}))
+        file = list(mongo.db.files.find())
+        profile = list(mongo.db.files.find({"id": session["user"]}))
         edit = mongo.db.Sharedworkouts.find_one({'_id': ObjectId(workout_id)})
         sharedworkout = list(mongo.db.Sharedworkouts.find())
         return render_template('update-Sharedworkout.html', username=username,
-                               edit=edit, workouts=sharedworkout, files=file)
+                               edit=edit, workouts=sharedworkout, files=file,
+                               profile=profile)
     flash("You need to log in")
     return redirect(url_for("login"))
 
@@ -668,8 +674,10 @@ def sharedsearch(username):
         sharedworkout = list(mongo.db.Sharedworkouts.find({"$text":
                              {"$search": query}}))
         file = list(mongo.db.files.find({"id": session["user"]}))
+        profile = list(mongo.db.files.find({"id": session["user"]}))
         return render_template("sharedworkouts.html", username=username,
-                               files=file, workouts=sharedworkout)
+                               files=file, workouts=sharedworkout,
+                               profile=profile)
     flash("You need to log in")
     return redirect(url_for("login"))
 
@@ -682,8 +690,10 @@ def savedsearch(username):
         sharedworkout = list(mongo.db.Sharedworkouts.find({"$text":
                              {"$search": query}}))
         file = list(mongo.db.files.find())
+        profile = list(mongo.db.files.find({"id": session["user"]}))
         return render_template("savedsharedworkouts.html", username=username,
-                               files=file, workouts=sharedworkout)
+                               files=file, workouts=sharedworkout,
+                               profile=profile)
     flash("You need to log in")
     return redirect(url_for("login"))
 
