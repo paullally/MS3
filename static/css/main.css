@@ -169,6 +169,7 @@ a
 .workoutcard
 {
     height: 400px;
+    overflow-y: scroll;
 }
 .card-text
 {
@@ -194,10 +195,6 @@ h1
 {
     padding-left: 50px;
     padding-right: 50px;
-}
-.card-body
-{
-    overflow-y: scroll;
 }
 .fa-dumbbell
 {
