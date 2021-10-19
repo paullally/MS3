@@ -104,3 +104,17 @@ The Shared Workouts page has a search bar and all the workouts shared by others 
 ### **Icons**
 - [Font Awesome Icons](https://fontawesome.com/)
     - All the icons used across this website were taken from Font Awesome and styled to match the colour scheme.
+
+### **Typography**
+
+- [**Oswald**](https://fonts.google.com/specimen/Oswald?query=os)
+    - The primary font across the website.
+    - Oswald was used for the headings and navigation bar
+    - Oswald was chosen due its distinct style.
+
+- [**Ubuntu**](https://fonts.google.com/specimen/Ubuntu?query=ubu)
+    - The secondary font across the website.
+    - Ubuntu was used for the paragraph texts and buttons.
+    - Ubuntu was chosen because it pairs well with oswald.
+
+### **Wireframes**
