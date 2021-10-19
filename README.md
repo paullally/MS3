@@ -95,3 +95,8 @@ The Shared Workouts page has a search bar and all the workouts shared by others 
 
 [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 - Flask is a microframework that I've used to render the back-end Python with the front-end.
+
+### **Colour Scheme**
+
+<br><br>
+<h2  id="top"><img src="static/images/colours.png" max-height=200px></h2>
