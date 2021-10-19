@@ -31,5 +31,9 @@
     - [**Media**](#media)
     - [**Code**](#code)
 <br>
-<br>
-<br>
+
+# **Keeping-fit**
+## **Purpose**
+
+**Keeping-fit** was designed with the purpose of helping users create and share workouts.**Keeping-fit** is also a way of keeping track of your goals for losing weight or getting stronger.<br><br>
+Once you Create an account you are albe to create your own personal workouts, share your personal workout or create workouts to be shared. You can also create keep track of your goals!
