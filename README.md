@@ -136,4 +136,40 @@ The Shared Workouts page has a search bar and all the workouts shared by others 
     - [Log in](wireframes/logtablet.png)
 
 ### **Existing Features**
-###  **Features on every page**
+
+### **Register page**
+The register page is a very basic it consists of a simple form where a user will
+- Create a username
+- Input an email address
+- Create a password 
+- Confirm password
+
+### **Log in page**
+The Log in page is very similiar to the register page to log in each user will have to fill out he form with 
+- Username 
+- Password
+
+### **Home page**
+The Home page contains a navbar with links to the workouts page saved workouts page and a small profile picture. when this profile picture is click you can access the profile page or log out function.If you are not logged in the navbar will have options to log in and register<br>
+The Home page contains 3 images and 3 paragraphs of text describing the application and how to access the application.<br>
+The Home page also contains a footer with links to all of **Keeping-fits's** social media.
+
+### **Profile page**
+The profile page contains a navbar and footer which are the exact same as the Home page.<br>
+on the profile page you are given the ability to Create Read Update and Delete goals.<br>
+The Goals are displayed on a card that has the title of the goal description of the goal and edit and delte buttons.<br>
+The profile page also contains a camera icon which gives you the ability to upload a profile photo which will be displayed above the goals.<br>
+The profile page also has a smaller navbar that allows the user to filter between completed and inprogress goals.
+
+### **Workouts page**
+The Workouts page contains a navbar and footer the same as the previous pages.<br>
+On the Workouts page you are also give the functionality to Create Read Update and Delete Workouts.<br>
+Each Workout is displayed on a card that contains the title of workout, the description of the workout and difficultly of the workout(1-5) Each card has a edit delte and share button.<br>
+The Share button will share this workout with other users and it will be displayed on the shared workouts page.<br>
+At the top of the page there is a search bar that allows users to search through wourkouts by title.
+### **Shared Workouts page**
+The Shared workouts page has the same layout as the workouts page.<br>
+The Shared workouts page contains cards similiar to the workouts page but displays the users profile picture that created the workout.<br>
+if you created the workout you will have the option to edit and delete it.<br>
+if you did not create the workout page you will have the option to save it.<br>
+This page also has a smaller navbar that allows the users to filter between all the workouts and the workouts they saved.
