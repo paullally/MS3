@@ -100,3 +100,7 @@ The Shared Workouts page has a search bar and all the workouts shared by others 
 
 <br><br>
 <h2  id="top"><img src="static/images/colours.png" max-height=200px></h2>
+
+### **Icons**
+- [Font Awesome Icons](https://fontawesome.com/)
+    - All the icons used across this website were taken from Font Awesome and styled to match the colour scheme.
