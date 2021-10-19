@@ -10,8 +10,6 @@
         - [**Typography**](#typography)
     - [**Wireframes**](#wireframes)
 
-4. [**Information Architecture**](#information-architecture)
-
 2. [**Features**](#features)
     - [**Existing Features**](#existing-features)
     - [**Features Left to Implement**](#features-left-to-implement)
@@ -118,3 +116,24 @@ The Shared Workouts page has a search bar and all the workouts shared by others 
     - Ubuntu was chosen because it pairs well with oswald.
 
 ### **Wireframes**
+
+- Desktop
+    - [Home Page](wireframes/Homedesktop.png)
+    - [Profile Page](wireframes/profiledesktop.png)
+    - [Workout](wireframes/workoutdesktop.png)
+    - [Log in](wireframes/logdesktop.png)
+
+- Tablet
+    - [Home Page](wireframes/hometablet.png)
+    - [Profile Page](wireframes/profiletablet.png)
+    - [Workout](wireframes/workouttablet.png)
+    - [Log in](wireframes/logtablet.png)
+
+- Mobile
+    - [Home Page](wireframes/hometablet.png)
+    - [Profile Page](wireframes/profiletablet.png)
+    - [Workout](wireframes/workouttablet.png)
+    - [Log in](wireframes/logtablet.png)
+
+### **Existing Features**
+###  **Features on every page**
