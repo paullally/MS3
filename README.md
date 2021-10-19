@@ -82,3 +82,16 @@ The Shared Workouts page has a search bar and all the workouts shared by others 
 > As a user I want to be able to search workouts so I can easily find specific workouts.
 ### **Design**
 ---
+### **Frameworks**
+
+[Bootstrap](https://getbootstrap.com/)
+- Bootstrap useage largely focuses on the responsiveness aspect of the appliaction
+
+[mdbootstrap](https://mdbootstrap.com/)
+- mdbootstrap was used for most of elements on each page such as the cards buttons and modals. 
+
+[JQuery v3.5.1](https://jquery.com/)
+-  JQuery was used to cut down on javascript code
+
+[Flask](https://flask.palletsprojects.com/en/1.1.x/)
+- Flask is a microframework that I've used to render the back-end Python with the front-end.
