@@ -173,3 +173,17 @@ The Shared workouts page contains cards similiar to the workouts page but displa
 if you created the workout you will have the option to edit and delete it.<br>
 if you did not create the workout page you will have the option to save it.<br>
 This page also has a smaller navbar that allows the users to filter between all the workouts and the workouts they saved.
+## Features left to implement
+
+There were several features planned for the future implentation of this project.
+
+(1) Liking Shared Workouts
+ - I would like to add a like button and counter to each shared workout card.
+
+(2) Adding friends
+- I would like to give users the ability to add each other friends to make a social network for users to compare and compete to add a competitive  element to the application
+
+(3) Tracking activity
+- I would like to add a calendar to the profile page that will track the users activity on the application to see which days they are most active
+
+---
