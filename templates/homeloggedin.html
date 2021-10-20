@@ -24,11 +24,11 @@
           {% if files|length %}
           {% for file in files %}
           {%if file.id==username%}
-          <img src="{{url_for('filed', filename=file.profile_image_name)}}" alt="profile image" class="rounded-circle" height="25" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" alt="profile image" class="rounded-circle" height="25"  loading="lazy" />
           {% endif %}
           {% endfor %}
           {% else %}
-          <img src="https://via.placeholder.com/150" class="rounded-circle" alt="profile image" height="25" alt="" loading="lazy" />
+          <img src="https://via.placeholder.com/150" class="rounded-circle" alt="profile image" height="25"  loading="lazy" />
           {% endif %}
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -54,7 +54,7 @@
         <p>Keeping-Fit is a website made for people to keep track of workouts, Share there favourite workouts and to also keep track of the goals they want to achieve</p>
       </div>
       <div class="col-lg-4 col-md-6  col-sm-6   my-5 ">
-        <img src="../static/images/undraw_fitness_tracker_3033.png"  alt="fitness tracker"class="img-fluid">
+        <img src="../static/images/undraw_fitness_tracker_3033.png"  alt="fitness tracker" class="img-fluid">
       </div>
     </div>
     <div class="row">

@@ -46,7 +46,7 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
       {% if files|length %}
       {% for file in files %}
-      <img src="{{url_for('file', filename=file.profile_image_name)}}" height="200" width="200" class="rounded-circle my-5" alt="profile image">
+      <img src="{{url_for('filed', filename=file.profile_image_name)}}" height="200" width="200" class="rounded-circle my-5" alt="profile image">
       {% endfor %}
       {% else %}
       <img src="https://via.placeholder.com/150" height="200" width="200" class="rounded-circle my-5" alt="profile image">
@@ -58,13 +58,13 @@
     <div class="col-lg-12">
       <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link  mininav" id="home-tab" data-toggle="tab" href="{{ url_for('profile',username=username) }}" role="tab" aria-controls="home" aria-selected="true">All Goals</a>
+          <a class="nav-link  mininav" id="home-tab" data-toggle="tab" href="{{ url_for('profile',username=username) }}" role="tab" aria-selected="true">All Goals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  mininav" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab" aria-controls="profile" aria-selected="false">Completed</a>
+          <a class="nav-link  mininav" id="profile-tab" data-toggle="tab" href="{{ url_for('profilecompleted',username=username) }}" role="tab"  aria-selected="false">Completed</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link active mininav" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogress',username=username) }}" role="tab" aria-controls="contact" aria-selected="false">In Progress</a>
+          <a class="nav-link active mininav" id="contact-tab" data-toggle="tab" href="{{ url_for('profileinprogress',username=username) }}" role="tab" aria-selected="false">In Progress</a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
@@ -117,6 +117,7 @@
                   <button type="submit" class="btn btn-primary edit">Save</button>
                 </div>
               </div>
+              </div>
           </form>
         </div>
       </div>
@@ -142,46 +143,6 @@
         <a class="text-white">KeepingFit</a>
       </div>
     </footer>
-  </div>
-</div>
-<div class="modal fade" id="taticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Create New Workout</h5>
-        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form class="new_patient" method="POST" action="{{url_for('addworkout',username=username)}}">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <h5 class="small-heading">Title of Workout</h5>
-                <input type="text" name="Title" class="form-control mb-4" required>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <h5 class="small-heading">Workout Details</h5>
-                <div class="form-outline">
-                  <textarea class="form-control" name="Routine" rows="4"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-12">
-                <h5 class="small-heading">Difficutly</h5>
-                <select class="form-select" id="Difficulty" name="Difficulty">
-                  <option selected>One</option>
-                  <option value="Two">Two</option>
-                  <option value="Three">Three</option>
-                  <option value="Four">Four</option>
-                  <option value="Five">Five</option>
-                </select>
-              </div>
-              <div class="d-flex justify-content-between mt-3">
-                <button type="submit" class="btn btn-primary btn-rounded edit">Save</button>
-              </div>
-            </div>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 <div class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
