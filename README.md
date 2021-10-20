@@ -17,7 +17,6 @@
 3. [**Technologies Used**](#technologies-used)
     - [**Front-End Technologies**](#front-end-technologies)
     - [**Back-End Technologies**](#back-end-technologies)
-    - [**Database Schema**](#database-schema)
 
 4. [**Testing**](#testing)
     - [**Code Testing**](#code-testing)
@@ -192,4 +191,30 @@ There were several features planned for the future implentation of this project.
 (3) Tracking activity
 - I would like to add a calendar to the profile page that will track the users activity on the application to see which days they are most active
 
+---
+
+## **Technologies Used** 
+---
+- ### **Front End Technologies**
+    - HTML
+    - CSS
+    - Javascript
+    - [**JQuery**](https://jquery.com/) to simplify DOM manipulation.
+    - [**MDBoostrap**](https://mdbootstrap.com/) a front end framework used to create responsive aspects across the site. 
+    - [**Font Awesome**](https://fontawesome.com/) Font awesome Icons are used for the Social media links contained in the Footer section of the website.
+    - [**Google Fonts**](https://fonts.google.com/) Google fonts are used throughout the project.
+
+- ### **Back End Technologies**
+    - Python - The back-end programming language.
+    - [**Flask**](https://flask.palletsprojects.com/en/2.0.x/) Used as the framework.
+    - [**Jinja**](https://jinja.palletsprojects.com/en/3.0.x/)  Used for templating with Flask.
+    - [**Heroku**](https://www.heroku.com/) to host the application
+    - [**Pymongo**](https://pypi.org/project/pymongo/) Used to connect the python with the database.
+    - [**MongoDB**](https://www.mongodb.com/) Used to store the database.
+
+- ### **Other Technologies** 
+    - [**Gitpod**](http://gitpod.io/) the cloud based IDE used for development 
+    - [**Github**](https://github.com/) to store and share all project code remotely.
+    - [**Balsamiq**](https://balsamiq.com/?gclid=Cj0KCQjwo6D4BRDgARIsAA6uN1-NxDOthq9pGqYzB_1iRxlBvHVwi_4_LaZuGqQT46csctF0xCiTXUMaAqmuEALw_wcB) used to create wireframes.
+## **Testing** 
 ---
