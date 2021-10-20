@@ -20,7 +20,13 @@
     - [**Database Schema**](#database-schema)
 
 4. [**Testing**](#testing)
-
+    - [**Code Testing**](#code-testing)
+    - [**Validator Testing**](#validator-testing)
+    - [**User Story Testing**](#User-Story-Testing)
+    - [**Manual Testing**](#manual-testing)
+    - [**Lighthouse**](#lighthouse)
+    - [**Responsive Testing**](#responsive-testing)
+    - [**Bug Report**](#bug-report)
 5. [**Deployment**](#deployment)
     - [**Local Deployment**](#local-deployment)
     - [**Remote Deployment**](#remote-deployment)
