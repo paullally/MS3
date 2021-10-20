@@ -24,11 +24,11 @@
           {% if profile|length %}
           {% for file in profile %}
           {%if file.id==username%}
-          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="25" alt="profile image" loading="lazy" />
           {% endif %}
           {% endfor %}
           {% else %}
-          <img src="https://via.placeholder.com/150" class="rounded-circle" height="25" alt="" loading="lazy" />
+          <img src="https://via.placeholder.com/150" class="rounded-circle" height="25" alt="profile image" loading="lazy" />
           {% endif %}
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -74,7 +74,7 @@
           <h5>Created by: {{workout.user}}</h5>
           {% for file in files %}
           {% if file.id==workout.user %}
-          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="50" width="50" alt="" loading="lazy" />
+          <img src="{{url_for('filed', filename=file.profile_image_name)}}" class="rounded-circle" height="50" width="50" alt="profile image" loading="lazy" />
           {% endif %}
           {% endfor %}
           <div>
