@@ -432,3 +432,23 @@ SECRET KEY | <secret_key>
 - Save these changes and then go back to the dashboard and press deploy.
 - Your application should now be deployed.
 
+
+### Content
+
+All content for the Study-Pal application was written by me. 
+
+---
+
+#### Media
+
+- The images came from [unDraw](https://undraw.co/).
+- The icons came from [fontawesome](https://fontawesome.com/v5.15/icons?d=gallery&p=2).
+
+#### Code
+
+- The cards and navigation bar and footer were adapted from [MDBootstrap](https://mdbootstrap.com/)
+- Code for keeping the footer on the bottom was adapted form the following [Medium Article](https://medium.com/@zerox/keep-that-damn-footer-at-the-bottom-c7a921cb9551)
+
+#### Acknowledgements
+
+Thanks to my Mentor [Chris Quinn](https://github.com/10xOXR) for help with this project especially with the defensive programming.
