@@ -540,4 +540,4 @@ All content for the Study-Pal application was written by me.
 
 #### Acknowledgements
 
--Thanks to my Mentor [Chris Quinn](https://github.com/10xOXR) for help with this project especially with the defensive programming.
+- Thanks to my Mentor [Chris Quinn](https://github.com/10xOXR) for help with this project especially with the defensive programming.
