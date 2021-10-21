@@ -9,15 +9,13 @@
         - [**Icons**](#icons)
         - [**Typography**](#typography)
     - [**Wireframes**](#wireframes)
-
 2. [**Features**](#features)
     - [**Existing Features**](#existing-features)
     - [**Features Left to Implement**](#features-left-to-implement)
-
 3. [**Technologies Used**](#technologies-used)
     - [**Front-End Technologies**](#front-end-technologies)
     - [**Back-End Technologies**](#back-end-technologies)
-
+    - [**Database Schema**](#database-schema)
 4. [**Testing**](#testing)
     - [**Code Testing**](#code-testing)
     - [**Validator Testing**](#validator-testing)
@@ -219,6 +217,96 @@ There were several features planned for the future implentation of this project.
     - [**Gitpod**](http://gitpod.io/) the cloud based IDE used for development 
     - [**Github**](https://github.com/) to store and share all project code remotely.
     - [**Balsamiq**](https://balsamiq.com/?gclid=Cj0KCQjwo6D4BRDgARIsAA6uN1-NxDOthq9pGqYzB_1iRxlBvHVwi_4_LaZuGqQT46csctF0xCiTXUMaAqmuEALw_wcB) used to create wireframes.
+
+
+- The application uses `MongoDB` for data storage.  MongoDB was chosen as the database to use due to the unstructured format of the data that will be stored within it. 
+
+The data stored in the database are the following:
+- Object ID
+- String
+- Boolean
+
+There are four core collections within the Database: 
+
+**users**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+email | string
+username | string
+password | string
+
+**Goals**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+user | string
+date | string
+title | string
+details | string
+completed | string
+
+**sharedworkouts**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+user | string
+date | string
+title | string
+routine | string
+difficulty | string
+savedby | array
+
+
+**Workouts**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+user | string
+date | string
+title | string
+routine | string
+difficulty | string
+shared | boolean
+
+
+
+**files**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+id | string
+profile_image_name | string
+
+**fs.chunks**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+files_id| ObjectId 
+n | int32
+data | binary
+
+**fs.files**
+
+Key in db | Data type |
+--- | --- | 
+_id | ObjectId 
+filename | string
+contentType | string
+md5 | string
+chunkSize | int32
+length | int64
+uploadDate | date
+
+
+
+
 ## **Testing** 
 ---
 ### **Code Testing**
