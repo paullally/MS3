@@ -218,3 +218,68 @@ There were several features planned for the future implentation of this project.
     - [**Balsamiq**](https://balsamiq.com/?gclid=Cj0KCQjwo6D4BRDgARIsAA6uN1-NxDOthq9pGqYzB_1iRxlBvHVwi_4_LaZuGqQT46csctF0xCiTXUMaAqmuEALw_wcB) used to create wireframes.
 ## **Testing** 
 ---
+### **Code Testing**
+#### **validator testing**
+[W3C Markup Validation](https://validator.w3.org/)
+
+W3C Markup Validation was used to validate both the HTMl and CSS for this application.
+- No errors were noted in the CSS 
+- No errors were noted in the HTML
+- 2 Warnings were given.
+
+One of these warnings was for the lack of headings, and the other was for having an empty heading. I think i got these warnings because the card headings were div elements not heading elements which would fill up most of the pages, and the empty heading element was from the edit profile picture icon that was inside a h1 element 
+
+**Warning one**
+<h2 align=center id="top"><img src="static/images/Home_validator.png" max-height=50px></h2>
+
+
+**Warning Two**
+<h2 align=center id="top"><img src="static/images/warnings2.png" max-height=50px></h2>
+
+**CSS**
+<h2 align=center id="top"><img src="static/images/cssvalid.png" max-height=50px></h2>
+
+[JSHint](https://jshint.com/)
+
+ **Metrics**
+
+- There 1 functions in this file.
+
+- It takes no arguments.
+
+- This function contains one statement
+
+- Cyclomatic complexity number for this function is 1.
+
+<h2 align=center id="top"><img src="static/images/jsvalid.png" max-height=50px></h2>
+
+
+[pep8](http://pep8online.com/)
+
+All Python code was check in the [pep8](http://pep8online.com/) validator these were the results.
+
+- <h2 align=center id="top"><img src="static/images/pythonvalid.png" max-height=50px></h2>
+
+
+### **User Story Testing**
+
+1.  As a user I want to have a clear idea of what the application is about upon visiting the site.
+    - The Home page has 3 sections which contains details about what the application is how it works and how to sign up.
+2.  As a user I would like to be able to create my own account.
+    - Each User will have to create an account on that register page and login their account to use this application.
+3.  As a user I want to be able to create and view workouts.
+    - The My Workouts page allows you to create and view private workouts.
+4.  As a user I want to be able to edit and delete my workouts.
+    - Each Workouts card contains two buttons a button to edit that workout or to delete that workout
+5.  As a user I would like to be able to share my workouts with others.
+    - Each Workout card will contain a button that allows a user to share that specific workout, Once that workout is shared the button will update.
+6. As a user I would like to be able to view workouts shared by others.
+    - The All Workouts page contains all the workouts shared by you and others
+7.  As a user I would like to be able to create,view,edit and delete goals that I have.
+    - The profile page contains the CRUD functionality for the goals section
+8. As a user I want to be able to save shared workouts so I can view them later.
+    - Workouts that are not created by you on the all workouts page will have a save button this can be viewed in the saved all workouts page.
+9.  As I would like to be able to give each workout difficulty score so i know which workouts are harder then others.
+    - When creating every workout you are required to give it a difficulty
+10. As a user I want to be able to search workouts so I can easily find specific workouts.
+    - The All workouts and my workouts page have search bars that allows users to search workouts by their title.
