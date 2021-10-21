@@ -27,7 +27,10 @@
     - [**Responsive Testing**](#responsive-testing)
     - [**Bug Report**](#bug-report)
 5. [**Deployment**](#deployment)
-    - [**Local Deployment**](#local-deployment)
+    - [**GitHub Pages**](#using-github-pages)
+    - [**Locally**](run-locally)
+    - [**Forking**](forking)
+    - [**Making a Local Clone**](#making-a-local-clone)
     - [**Remote Deployment**](#remote-deployment)
 
 6. [**Credits**](#credits)
@@ -338,3 +341,94 @@ The results were as follows:
     Myworkouts | Y | search button goes under searchbar.  
     AllWorkouts | Y | search button goes under searchbar.
     profile | Y | Navigation bar Turns to hamburger menu.
+
+# **Deployment**
+
+### **Using Github Pages**
+
+This project was developed using the Gitpod IDE, committed to git and pushed to GitHub using the built in function within Gitpod.
+
+To deploy this page to GitHub Pages from its GitHub repository, the following steps were taken:
+
+1. Log into GitHub.
+2. From the list of repositories on the screen, select paullally/Word-Connect
+3. From the menu items near the top of the page, select Settings.
+4. Scroll down to the GitHub Pages section.
+5. Under Source click the drop-down menu labelled None and select Master Branch
+6. On selecting Master Branch the page is automatically refreshed, the website is now deployed.
+7. Scroll back down to the GitHub Pages section to retrieve the link to the deployed website.
+
+### **Run Locally**
+To clone this project into Gitpod you will need:
+1. A Github account. [Create a Github account here](https://github.com/)
+2. Use the Chrome browser 
+
+Then follow these steps:
+1. Install the [Gitpod Browser Extentions for Chrome](https://www.gitpod.io/docs/browser-extension/)
+2. After installation, restart the browser
+3. Log into [Gitpod](https://gitpod.com) with your gitpod account.
+4. Navigate to the [Project GitHub repository](https://github.com/paullally/MS3)
+5. Click the green "Gitpod" button in the top right corner of the respository
+6. This will trigger a new gitpod workspace to be created from the code in github where you can work locally.
+
+To work on the project code within a local IDE such as VSCode:
+1. Follow this link to the [Project GitHub repository](https://github.com/paullally/MS3).
+2. Under the repository name, click "Clone or download".
+3. In the Clone with HTTPs section, copy the clone URL for the repository. 
+4. In your local IDE open the terminal.
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type ```git clone```, and then paste the URL you copied in Step 3.
+7. Press Enter. Your local clone will be created.
+
+
+### Forking
+
+When Forking a repsoitory you are essentially making a copy for the exisiting repository and adding it to your github account
+
+1. Log in to GitHub 
+2. locate the [GitHub Repository](https://github.com/paullally/MS3) you whish to fork
+3. At the top of the repository to the right of the repository name you should see a fork button.
+4. Press the fork button.
+5. you should now have forked the repository and it will appear on your github account
+
+
+### Making a Local Clone
+
+1. Log in to GitHub
+2. Find the [Repository]https://github.com/paullally/MS3) you whish to clone
+3. Click the Code Dropdown and get a copy of the HTTPS link.
+4. Open Git Bash
+5. Change the directory to the directory you whish the repository to be.
+6. Type `git clone`, and then paste the HTTPS URL.
+
+```
+$ git clone https://github.com/paullally/MS3
+```
+
+7. Enter the code in the Git Bash Terminal
+8. Your local clone will be created.
+
+### Remote Deployment
+
+- Create a `requirements.txt` file using the terminal command `pip freeze > requirements.txt`.
+- Create a Procfile with the terminal command `echo web: python app.py > Procfile`.
+- Commit and push these changes to the repository
+- Go to [Heroku](https://dashboard.heroku.com/login)
+- press the new button, give the project a name and set the region to your region. 
+- You will be redirect to the application dashboard  click on Deploy  then Deployment method and select GitHub.
+- Link your heroku app to the correct github repository.
+- in the application dashboard press the settings button and Reveal Config Vars.
+- Set the following config vars:
+
+| KEY | VALUE |
+--- | --- |
+DEBUG| FALSE | 
+IP | 0.0.0.0|
+PORT | 5000|
+MONGODBNAME | <database_name>
+MONGO_URI| mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority 
+SECRET KEY | <secret_key>
+
+- Save these changes and then go back to the dashboard and press deploy.
+- Your application should now be deployed.
+
