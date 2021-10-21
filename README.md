@@ -375,11 +375,11 @@ manual testing was completed to make sure each page was fully responsive.
 
 A desktop Lighthouse report was completed on Word-Connect's website
 The results were as follows:
-<h2 align=center id="top"><img src="/workspace/MS3/static/images/ligthousedesktop.png" max-height=100px></h2>
+<h2 align=center id="top"><img src="static/images/ligthousedesktop.png" max-height=100px></h2>
 
 A mobile Lighthouse report was completed on Word-Connect's website
 The results were as follows:
-<h2 align=center id="top"><img src="/workspace/MS3/static/images/ligthousemobile.png" max-height=100px></h2>
+<h2 align=center id="top"><img src="static/images/ligthousemobile.png" max-height=100px></h2>
 
 ### **Desktop Testing**
 -
