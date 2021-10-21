@@ -338,8 +338,8 @@ The results were as follows:
   | Page | Responsive| Notes| 
     --- | --- | ---
     Home | Y | images and text take up 12 cols.
-    Myworkouts | Y | search button goes under searchbar.  
-    AllWorkouts | Y | search button goes under searchbar.
+    Myworkouts | Y | search heading removed.  
+    AllWorkouts | Y | search heading removed.  
     profile | Y | Navigation bar Turns to hamburger menu.
 
 # **Deployment**
