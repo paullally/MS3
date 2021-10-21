@@ -283,3 +283,58 @@ All Python code was check in the [pep8](http://pep8online.com/) validator these 
     - When creating every workout you are required to give it a difficulty
 10. As a user I want to be able to search workouts so I can easily find specific workouts.
     - The All workouts and my workouts page have search bars that allows users to search workouts by their title.
+
+### **Manual Testing**
+
+manual testing was completed to make sure each page was fully responsive.
+
+#### **Lighthouse**
+
+A desktop Lighthouse report was completed on Word-Connect's website
+The results were as follows:
+<h2 align=center id="top"><img src="/workspace/MS3/static/images/ligthousedesktop.png" max-height=100px></h2>
+
+A mobile Lighthouse report was completed on Word-Connect's website
+The results were as follows:
+<h2 align=center id="top"><img src="/workspace/MS3/static/images/ligthousemobile.png" max-height=100px></h2>
+
+### **Desktop Testing**
+-
+    | Page | Responsive| Notes| 
+    --- | --- | ---
+    Home | Y | Fully Responsive.
+    Myworkouts | Y | Fully Responsive.  
+    AllWorkouts | Y | Fully Responsive.
+    profile | Y | Fully Responsive.
+
+### **Laptop Testing**
+-
+    | Page | Responsive| Notes| 
+    --- | --- | ---
+    Home | Y | Fully Responsive.
+    Myworkouts | Y | Fully Responsive.  
+    AllWorkouts | Y | Fully Responsive.
+    profile | Y | Fully Responsive.
+
+
+
+    
+### **Tablet Testing**
+-
+     | Page | Responsive| Notes| 
+    --- | --- | ---
+    Home | Y | Navigation bar Turns to hamburger menu.
+    Myworkouts | Y | cards take up 12 cols.  
+    AllWorkouts | Y | cards take up 12 cols.
+    profile | Y | Navigation bar Turns to hamburger menu.
+
+
+
+### **Mobile Testing**
+-
+  | Page | Responsive| Notes| 
+    --- | --- | ---
+    Home | Y | images and text take up 12 cols.
+    Myworkouts | Y | search button goes under searchbar.  
+    AllWorkouts | Y | search button goes under searchbar.
+    profile | Y | Navigation bar Turns to hamburger menu.
