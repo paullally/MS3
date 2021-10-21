@@ -366,7 +366,7 @@ def sharedworkouts(username):
             sharedworkout = list(mongo.db.Sharedworkouts.find())
             return render_template("sharedworkouts.html", username=username,
                                    files=file, workouts=sharedworkout,
-                                   profiles=profile)
+                                   profile=profile)
     else:
         flash("You need to log in")
         return redirect(url_for("login"))
