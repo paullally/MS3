@@ -200,3 +200,15 @@ h1
 {
     color:var(--blue);
 }
+@media only screen and (max-width: 600px) {
+    .search-heading
+    {
+        display: none;
+        visibility: hidden;
+    }
+  }
+
+.fa-bars
+{
+    color: white!important;
+}
