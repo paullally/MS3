@@ -218,15 +218,7 @@ There were several features planned for the future implentation of this project.
     - [**Github**](https://github.com/) to store and share all project code remotely.
     - [**Balsamiq**](https://balsamiq.com/?gclid=Cj0KCQjwo6D4BRDgARIsAA6uN1-NxDOthq9pGqYzB_1iRxlBvHVwi_4_LaZuGqQT46csctF0xCiTXUMaAqmuEALw_wcB) used to create wireframes.
 
-
-- The application uses `MongoDB` for data storage.  MongoDB was chosen as the database to use due to the unstructured format of the data that will be stored within it. 
-
-The data stored in the database are the following:
-- Object ID
-- String
-- Boolean
-
-There are four core collections within the Database: 
+### **Database Schema**
 
 **users**
 
